@@ -284,8 +284,7 @@ func watermarkImage(buf []byte, o ImageOptions) (Image, error) {
     opts.WatermarkImage.Top = o.Top;
     opts.WatermarkImage.Buf = imageBuf;
     opts.WatermarkImage.Opacity = o.Opacity;
-    opts.Gravity = o.Gravity;
-
+    opts.Gravity = bimg.GravityCentre;
 
     return Process(buf, opts)
 }
