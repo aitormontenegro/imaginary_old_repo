@@ -24,7 +24,7 @@ var OperationsMap = map[string]Operation{
     "zoom":      Zoom,
     "convert":   Convert,
     "watermark": Watermark,
-    "watermarkImage": WatermarkImage,
+    "watermarkImage": watermarkImage,
     "blur":      GaussianBlur,
     "smartcrop": SmartCrop,
     "fit":       Fit,
