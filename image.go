@@ -268,16 +268,6 @@ func Watermark(buf []byte, o ImageOptions) (Image, error) {
 }
 
 func watermarkImage(buf []byte, o ImageOptions) (Image, error) {
-    #response, err := http.Get(o.Image)
-    #    if err != nil {
-    #        return Image{}, NewError("Invalid watermark image.", BadRequest)
-    #    }
-    #defer response.Body.Close()
-
-    #imageBuf, _ := ioutil.ReadAll(response.Body)
-    #if len(imageBuf) == 0 {
-    #    return Image{}, NewError("Invalid watermark image. Buffer = 0", BadRequest)
-    #}
 
     opts := BimgOptions(o)
     opts.WatermarkImage.Left = o.Left;
