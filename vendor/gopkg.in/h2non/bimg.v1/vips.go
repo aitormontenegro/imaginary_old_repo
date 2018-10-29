@@ -69,6 +69,7 @@ type vipsWatermarkImageOptions struct {
 	Left    C.int
 	Top     C.int
 	Opacity C.float
+	Gravity C.int
 }
 
 type vipsWatermarkTextOptions struct {
@@ -693,7 +694,7 @@ func vipsDrawWatermark(image *C.VipsImage, o WatermarkImage) (*C.VipsImage, erro
 		return nil, e
 	}
 
-	opts := vipsWatermarkImageOptions{C.int(o.Left), C.int(o.Top), C.float(o.Opacity)}
+	opts := vipsWatermarkImageOptions{C.int(o.Left), C.int(o.Top), C.float(o.Opacity), C.int(o.GRavity)}
 
 	err := C.vips_watermark_image(image, watermark, &out, (*C.WatermarkImageOptions)(unsafe.Pointer(&opts)))
 
