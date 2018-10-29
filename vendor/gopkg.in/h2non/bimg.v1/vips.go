@@ -694,7 +694,7 @@ func vipsDrawWatermark(image *C.VipsImage, o WatermarkImage) (*C.VipsImage, erro
 		return nil, e
 	}
 
-	opts := vipsWatermarkImageOptions{C.int(o.Left), C.int(o.Top), C.float(o.Opacity), C.int(o.GRavity)}
+	opts := vipsWatermarkImageOptions{C.int(o.Left), C.int(o.Top), C.float(o.Opacity), C.int(o.Gravity)}
 
 	err := C.vips_watermark_image(image, watermark, &out, (*C.WatermarkImageOptions)(unsafe.Pointer(&opts)))
 
