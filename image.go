@@ -270,6 +270,7 @@ func watermarkImage(buf []byte, o ImageOptions) (Image, error) {
 
     aitorfile, err := os.Open(o.Image)
         if err != nil {
+            fmt.Fprintf(os.Stderr, "an %s\n", "error")
             return Image{}, NewError("Invalid watermark image.", BadRequest)
         }
 
