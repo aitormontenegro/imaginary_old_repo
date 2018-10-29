@@ -168,6 +168,7 @@ type WatermarkImage struct {
 	Top     int
 	Buf     []byte
 	Opacity float32
+	Gravity    int
 }
 
 // GaussianBlur represents the gaussian image transformation values.
