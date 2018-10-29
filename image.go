@@ -276,7 +276,7 @@ func watermarkImage(buf []byte, o ImageOptions) (Image, error) {
 
 	imageBuf, _ := ioutil.ReadAll(response.Body)
 	if len(imageBuf) == 0 {
-		return Image{}, NewError("Invalid watermark image.", BadRequest)
+		return Image{}, NewError("Invalid watermark image. Buffer = 0", BadRequest)
 	}
 
 	opts := BimgOptions(o)
