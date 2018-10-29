@@ -4,8 +4,6 @@ import (
     "encoding/json"
     "errors"
     "fmt"
-    "io/ioutil"
-    "net/http"
     "strings"
 
     "gopkg.in/h2non/bimg.v1"
