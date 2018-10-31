@@ -309,8 +309,10 @@ func watermarkImage(buf []byte, o ImageOptions) (Image, error) {
 //    fmt.Printf("%+v\n",o);
 
     opts := BimgOptions(o)
-    opts.WatermarkImage.Left = o.Left;
-    opts.WatermarkImage.Top = o.Top;
+//    opts.WatermarkImage.Left = o.Left;
+//    opts.WatermarkImage.Top = o.Top;
+    opts.WatermarkImage.Left = setleft;
+    opts.WatermarkImage.Top = settop;
     opts.WatermarkImage.Buf = imageBuf;
     opts.WatermarkImage.Opacity = o.Opacity;
     opts.WatermarkImage.Gravity = 1;
