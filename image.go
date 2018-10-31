@@ -283,9 +283,22 @@ func watermarkImage(buf []byte, o ImageOptions) (Image, error) {
     if err != nil {
         return Image{}, NewError("Cannot retrieve image metadata: %s"+err.Error(), BadRequest)
     }
+    metawatermark , err := bimg.Metadata(imageBuf)
+    if err != nil {
+        return Image{}, NewError("Cannot retrieve image metadata: %s"+err.Error(), BadRequest)
+    }
 
-    fmt.Printf("%+v\n",meta);
-    fmt.Printf("%s\n",meta.Size.Width);
+
+    var origimagwidth = meta.Size.Width;
+    var origimagheight = meta.Size.Height;
+    var waterimagwidth = metawatermark.Size.Width;
+    var waterimagheight = metawatermark.Size.Height;
+
+   // fmt.Printf("%+v\n",meta);
+    fmt.Printf("%s\n",origimagwidth);
+    fmt.Printf("%s\n",origimagheight);
+    fmt.Printf("%s\n",waterimagwidth);
+    fmt.Printf("%s\n",waterimagheight);
 
 //    fmt.Printf("%+v\n",o);
 
