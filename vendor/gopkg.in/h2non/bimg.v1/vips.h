@@ -501,12 +501,12 @@ vips_watermark_image(VipsImage *in, VipsImage *sub, VipsImage **out, WatermarkIm
 		t[8] = in;
 	}
 
-/*	if (has_alpha_channel(sub) == 0) {
+	if (has_alpha_channel(sub) == 0) {
 		vips_add_band(sub, &t[1], 255.0);
 		// sub is no longer in the array and won't be unreffed, so add it at the end
 		t[9] = sub;
 	}
-*/
+
 	// Place watermark image in the right place and size it to the size of the
 	// image that should be watermarked
 	if (
