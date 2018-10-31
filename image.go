@@ -300,6 +300,12 @@ func watermarkImage(buf []byte, o ImageOptions) (Image, error) {
     fmt.Printf("%s\n",waterimagwidth);
     fmt.Printf("%s\n",waterimagheight);
 
+    var settop = (origimagheight/2) - (waterimagheight/2)
+    var setleft = (origimagwidth/2) - (waterimagwidth/2)
+
+    fmt.Printf("%s\n",settop);
+    fmt.Printf("%s\n",setleft);
+
 //    fmt.Printf("%+v\n",o);
 
     opts := BimgOptions(o)
