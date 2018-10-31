@@ -279,11 +279,11 @@ func watermarkImage(buf []byte, o ImageOptions) (Image, error) {
         return Image{}, NewError("Invalid watermark image. Buffer = 0", BadRequest)
     }
 
-    //    o1 := ImageOptions{};
-    //    Info(buf,o1);
-    //
-    //    fmt.Printf("%+v\n",o1);
-    //    fmt.Printf("%+v\n",o);
+    o1 := ImageOptions{};
+    Info(buf,o1);
+
+    fmt.Printf("%+v\n",o1);
+    fmt.Printf("%+v\n",o);
 
     opts := BimgOptions(o)
     opts.WatermarkImage.Left = o.Left;
