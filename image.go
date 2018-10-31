@@ -285,7 +285,9 @@ func watermarkImage(buf []byte, o ImageOptions) (Image, error) {
     }
 
     fmt.Printf("%+v\n",meta);
-    fmt.Printf("%+v\n",o);
+    fmt.Printf("%s\n",meta.Size.Width);
+
+//    fmt.Printf("%+v\n",o);
 
     opts := BimgOptions(o)
     opts.WatermarkImage.Left = o.Left;
