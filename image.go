@@ -295,16 +295,16 @@ func watermarkImage(buf []byte, o ImageOptions) (Image, error) {
     var waterimagheight = metawatermark.Size.Height;
 
    // fmt.Printf("%+v\n",meta);
-    fmt.Printf("%s\n",origimagwidth);
-    fmt.Printf("%s\n",origimagheight);
-    fmt.Printf("%s\n",waterimagwidth);
-    fmt.Printf("%s\n",waterimagheight);
+   // fmt.Printf("%s\n",origimagwidth);
+   // fmt.Printf("%s\n",origimagheight);
+   // fmt.Printf("%s\n",waterimagwidth);
+   // fmt.Printf("%s\n",waterimagheight);
 
     var settop = (origimagheight/2) - (waterimagheight/2)
     var setleft = (origimagwidth/2) - (waterimagwidth/2)
 
-    fmt.Printf("%s\n",settop);
-    fmt.Printf("%s\n",setleft);
+//    fmt.Printf("%s\n",settop);
+//    fmt.Printf("%s\n",setleft);
 
 //    fmt.Printf("%+v\n",o);
 
