@@ -139,7 +139,7 @@ func (i *Image) Watermark(w Watermark) ([]byte, error) {
 func (i *Image) WatermarkImage(w WatermarkImage) ([]byte, error) {
 	options := Options{WatermarkImage: w}
 
-    fmt.Printf("%+v\n",options);
+    Printf("%+v\n",options);
 
 	return i.Process(options)
 }
