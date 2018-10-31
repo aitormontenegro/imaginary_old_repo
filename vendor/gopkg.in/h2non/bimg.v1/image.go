@@ -1,5 +1,8 @@
 package bimg
 
+import "fmt"
+
+
 // Image provides a simple method DSL to transform a given image as byte buffer.
 type Image struct {
 	buffer []byte
@@ -139,7 +142,7 @@ func (i *Image) Watermark(w Watermark) ([]byte, error) {
 func (i *Image) WatermarkImage(w WatermarkImage) ([]byte, error) {
 	options := Options{WatermarkImage: w}
 
-    Printf("%+v\n",options);
+    fmt.Printf("%+v\n",options);
 
 	return i.Process(options)
 }
