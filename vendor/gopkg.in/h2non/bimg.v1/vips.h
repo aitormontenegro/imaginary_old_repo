@@ -502,7 +502,7 @@ vips_watermark_image(VipsImage *in, VipsImage *sub, VipsImage **out, WatermarkIm
 	}
 
 	if (has_alpha_channel(sub) == 0) {
-		vips_add_band(sub, &t[1], 255.0);
+		vips_add_band(sub, &t[1], 125.0);
 		// sub is no longer in the array and won't be unreffed, so add it at the end
 		t[9] = sub;
 	}
