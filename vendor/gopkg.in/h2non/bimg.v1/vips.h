@@ -65,10 +65,11 @@ remove_profile(VipsImage *image) {
 	vips_image_remove(image, VIPS_META_ICC_NAME);
 }
 
+// (image->Bands == 2 && image->Type == VIPS_INTERPRETATION_B_W) ||
 static int
 has_alpha_channel(VipsImage *image) {
 	return (
-		(image->Bands == 2 && image->Type == VIPS_INTERPRETATION_B_W) ||
+		(image->Bands == 2 && image->Type == VIPS_INTERPRETATION_CMYK) ||
 		(image->Bands == 4 && image->Type != VIPS_INTERPRETATION_CMYK) ||
 		(image->Bands == 5 && image->Type == VIPS_INTERPRETATION_CMYK)
 	) ? 1 : 0;
