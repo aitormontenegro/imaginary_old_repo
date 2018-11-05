@@ -65,11 +65,10 @@ remove_profile(VipsImage *image) {
 	vips_image_remove(image, VIPS_META_ICC_NAME);
 }
 
-// (image->Bands == 2 && image->Type == VIPS_INTERPRETATION_B_W) ||
 static int
 has_alpha_channel(VipsImage *image) {
 	return (
-		(image->Bands == 2 && image->Type == VIPS_INTERPRETATION_CMYK) ||
+		(image->Bands == 2 && image->Type == VIPS_INTERPRETATION_B_W) ||
 		(image->Bands == 4 && image->Type != VIPS_INTERPRETATION_CMYK) ||
 		(image->Bands == 5 && image->Type == VIPS_INTERPRETATION_CMYK)
 	) ? 1 : 0;
@@ -526,9 +525,9 @@ vips_watermark_image(VipsImage *in, VipsImage *sub, VipsImage **out, WatermarkIm
     // vips_extract_band(t[1], &t[3], 3, "n", 1, NULL) ||
 	if (
 		vips_extract_band(t[1], &t[3], 3, "n", 1, NULL) ||
-		vips_linear1(t[3], &t[4], o->Opacity, 255.0, NULL) ||
+		vips_linear1(t[3], &t[4], o->Opacity, 0.0, NULL) ||
 		vips_cast(t[4], &t[5], VIPS_FORMAT_UCHAR, NULL) ||
-		vips_copy(t[5], &t[6], "interpretation", t[0]->Type, NULL) ||
+		vips_copy(t[5], &t[6], NULL) ||
 		vips_embed(t[6], &t[7], o->Left, o->Top, t[0]->Xsize, t[0]->Ysize, NULL))	{
 			g_object_unref(base);
 		return 1;
