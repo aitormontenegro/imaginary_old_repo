@@ -524,7 +524,7 @@ vips_watermark_image(VipsImage *in, VipsImage *sub, VipsImage **out, WatermarkIm
     // vips_copy(t[5], &t[6], "interpretation", t[0]->Type, NULL) ||
     // vips_extract_band(t[1], &t[3], 3, "n", 1, NULL) ||
 	if (
-		vips_extract_band(t[1], &t[3], 3, "n", 4, NULL) ||
+		vips_extract_band(t[1], &t[3], t[1]->Bands - 1, "n", 4, NULL) ||
 		vips_linear1(t[3], &t[4], o->Opacity, 0.0, NULL) ||
 		vips_cast(t[4], &t[5], VIPS_FORMAT_UCHAR, NULL) ||
 		vips_copy(t[5], &t[6], "interpretation", t[0]->Type, NULL) ||
