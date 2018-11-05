@@ -528,7 +528,12 @@ vips_watermark_image(VipsImage *in, VipsImage *sub, VipsImage **out, WatermarkIm
 	}
 
 	// Blend the mask and watermark image and write to output.
-	if (vips_ifthenelse(t[7], t[2], t[0], out, "blend", TRUE, NULL)) {
+/*	if (vips_ifthenelse(t[7], t[2], t[0], out, "blend", true, null)) {
+		g_object_unref(base);
+		return 1;
+	}
+    */
+	if (vips_composite(t[7], t[2], 255)) {
 		g_object_unref(base);
 		return 1;
 	}
