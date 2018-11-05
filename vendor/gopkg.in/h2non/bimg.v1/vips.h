@@ -533,7 +533,7 @@ vips_watermark_image(VipsImage *in, VipsImage *sub, VipsImage **out, WatermarkIm
 		return 1;
 	}
     */
-	if (vips_composite(t[7], t[2], 255, NULL)) {
+	if (vips_composite2(t[7], t[2], out, VIPS_BLEND_MODE_DARKEN, NULL)) {
 		g_object_unref(base);
 		return 1;
 	}
