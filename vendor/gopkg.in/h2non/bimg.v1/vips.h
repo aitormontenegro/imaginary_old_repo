@@ -523,6 +523,8 @@ vips_watermark_image(VipsImage *in, VipsImage *sub, VipsImage **out, WatermarkIm
     //vips_linear1(t[3], &t[4], o->Opacity, 0.0, NULL) ||
     // vips_copy(t[5], &t[6], "interpretation", t[0]->Type, NULL) ||
     // vips_extract_band(t[1], &t[3], 3, "n", 1, NULL) ||
+    //
+    printf("Hello, World!");
 	if (
 		vips_extract_band(t[1], &t[3], 0, "n", t[1]->Bands, NULL) ||
 		vips_linear1(t[3], &t[4], 0.5, 0.0, NULL) ||
