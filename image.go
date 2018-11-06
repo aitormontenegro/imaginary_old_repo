@@ -409,5 +409,6 @@ func Process(buf []byte, opts bimg.Options) (out Image, err error) {
     }
 
     mime := GetImageMimeType(bimg.DetermineImageType(buf))
-    return Image{Body: buf, Mime: mime}, nil
+//    return Image{Body: buf, Mime: mime}, nil
+    return Image{Body: buf, Mime: mime}
 }
