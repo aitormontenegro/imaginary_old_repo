@@ -126,9 +126,9 @@ func Fit(buf []byte, o ImageOptions) (Image, error) {
     if o.CustomWatermark != "" {
         // func watermarkImage(buf []byte, o ImageOptions) (Image, error) {
         fmt.Printf("Message: %s\n", o.CustomWatermark);
-        var wato ImageOptions = o;
+        var wato = o;
         wato.Image = o.CustomWatermark
-        var watimag byte[] = watermarkImage(buf, wato)
+        var watimag = watermarkImage(buf, wato)
 
     }else{
         fmt.Printf("puede que vacio: %s\n", o.CustomWatermark);
