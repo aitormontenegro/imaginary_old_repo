@@ -143,8 +143,7 @@ func Fit(buf []byte, o ImageOptions) (Image, error) {
             return Image{}, swaperr
         }
         o.Image = o.CustomWatermark;
-        return watermarkImage(swapimage[Body], o )
-    // return Image{Body: buf, Mime: mime}
+        return watermarkImage(swapimage['Body'], o)
         //TODO
     }else{
         return Process(buf, opts)
@@ -421,25 +420,4 @@ func Process(buf []byte, opts bimg.Options) (out Image, err error) {
 
     mime := GetImageMimeType(bimg.DetermineImageType(buf))
     return Image{Body: buf, Mime: mime}, nil
-}
-func Process_WM(buf []byte, opts bimg.Options) (Image) {
-    var err error;
-    defer func() {
-        if r := recover(); r != nil {
-            switch value := r.(type) {
-            case error:
-                err = value
-            case string:
-                err = errors.New(value)
-            default:
-                err = errors.New("libvips internal error")
-            }
-            out = Image{}
-        }
-    }()
-
-    buf, err = bimg.Resize(buf, opts)
-
-    mime := GetImageMimeType(bimg.DetermineImageType(buf))
-    return Image{Body: buf, Mime: mime}
 }
