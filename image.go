@@ -413,6 +413,7 @@ func Process(buf []byte, opts bimg.Options) (out Image, err error) {
     return Image{Body: buf, Mime: mime}, nil
 }
 func Process_WM(buf []byte, opts bimg.Options) (Image) {
+    var err error;
     defer func() {
         if r := recover(); r != nil {
             switch value := r.(type) {
@@ -429,7 +430,7 @@ func Process_WM(buf []byte, opts bimg.Options) (Image) {
 
     buf, err = bimg.Resize(buf, opts)
     if err != nil {
-        return Image{}, err
+        return NewError("Maximum allowed pipeline operations exceeded", BadRequest)
     }
 
     mime := GetImageMimeType(bimg.DetermineImageType(buf))
