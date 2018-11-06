@@ -136,9 +136,19 @@ func Fit(buf []byte, o ImageOptions) (Image, error) {
     opts := BimgOptions(o)
     opts.Embed = true
 
-    test := Process_WM(buf, opts)
 
-    return Process(buf, opts)
+    if o.CustomWatermark != "" {
+        swapimage, swaperr :=  Process(buf, opts)
+        if swaperr != nil {
+            return Image{}, swaperr
+        }
+        o.Image = o.CustomWatermark;
+        return watermarkImage(swapimage[Body], o )
+    // return Image{Body: buf, Mime: mime}
+        //TODO
+    }else{
+        return Process(buf, opts)
+    }
 }
 
 func Enlarge(buf []byte, o ImageOptions) (Image, error) {
