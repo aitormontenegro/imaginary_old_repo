@@ -113,19 +113,20 @@ func Fit(buf []byte, o ImageOptions) (Image, error) {
     if dims.Width < o.Width || dims.Height < o.Height {
         o.Width = dims.Width
         o.Height = dims.Height
-    }
-
-    // if input ratio > output ratio
-    // (calculation multiplied through by denominators to avoid float division)
-    if dims.Width*o.Height > o.Width*dims.Height {
-        // constrained by width
-        if dims.Width != 0 {
-            o.Height = o.Width * dims.Height / dims.Width
-        }
     } else {
-        // constrained by height
-        if dims.Height != 0 {
-            o.Width = o.Height * dims.Width / dims.Height
+
+        // if input ratio > output ratio
+        // (calculation multiplied through by denominators to avoid float division)
+        if dims.Width*o.Height > o.Width*dims.Height {
+            // constrained by width
+            if dims.Width != 0 {
+                o.Height = o.Width * dims.Height / dims.Width
+            }
+        } else {
+            // constrained by height
+            if dims.Height != 0 {
+                o.Width = o.Height * dims.Width / dims.Height
+            }
         }
     }
 
