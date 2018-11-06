@@ -130,7 +130,7 @@ func Fit(buf []byte, o ImageOptions) (Image, error) {
         wato.Image = o.CustomWatermark;
         optsW := BimgOptions(wato)
         optsW.Embed = true
-        var watimag = watermarkImage(buf, optsW);
+        var watimag = watermarkImage(buf, wato);
         return Process(watimag, optsW)
 
     }else{
