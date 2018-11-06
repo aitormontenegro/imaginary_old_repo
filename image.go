@@ -95,7 +95,8 @@ func Resize(buf []byte, o ImageOptions) (Image, error) {
         opts.Crop = true
     }
 
-    return Process(buf, opts)
+    //return Process(buf, opts)
+    return AddWatermarkImage(o, buf, opts)
 }
 
 func Fit(buf []byte, o ImageOptions) (Image, error) {
@@ -122,65 +123,26 @@ func Fit(buf []byte, o ImageOptions) (Image, error) {
         }
     }
 
-   // func watermarkImage(buf []byte, o ImageOptions) (Image, error) {
-   // func Process(buf []byte, opts bimg.Options) (out Image, err error) {
-
     opts := BimgOptions(o)
     opts.Embed = true
 
+    return AddWatermarkImage(o, buf, opts)
+}
+
+func AddWatermarkImage (o ImageOptions, buf []byte, opts bimg.Options)(Image, error){
 
     if o.CustomWatermark != "" {
-     /*   swapimage, swaperr :=  Process(buf, opts)
+        swapimage, swaperr :=  Process(buf, opts)
         if swaperr != nil {
             return Image{}, swaperr
         }
         o.Image = o.CustomWatermark;
         o.Opacity = 1.1
-
         return watermarkImage(swapimage.Body, o)
-        */
-        o.Image = o.CustomWatermark;
-        aitorfile, err := os.Open(o.Image)
-            if err != nil {
-                fmt.Fprintf(os.Stderr, "%s\n", err)
-                return Image{}, NewError("Invalid watermark image.", BadRequest)
-            }
-
-        imageBuf, _ := ioutil.ReadAll(aitorfile)
-        if len(imageBuf) == 0 {
-            return Image{}, NewError("Invalid watermark image. Buffer = 0", BadRequest)
-        }
-
-        meta, err := bimg.Metadata(buf)
-        if err != nil {
-            return Image{}, NewError("Cannot retrieve image metadata: %s"+err.Error(), BadRequest)
-        }
-        metawatermark , err := bimg.Metadata(imageBuf)
-        if err != nil {
-            return Image{}, NewError("Cannot retrieve image metadata: %s"+err.Error(), BadRequest)
-        }
-
-
-        var origimagwidth = meta.Size.Width;
-        var origimagheight = meta.Size.Height;
-        var waterimagwidth = metawatermark.Size.Width;
-        var waterimagheight = metawatermark.Size.Height;
-
-        var settop = (origimagheight/2) - (waterimagheight/2)
-        var setleft = (origimagwidth/2) - (waterimagwidth/2)
-
-
-        opts.WatermarkImage.Left = setleft;
-        opts.WatermarkImage.Top = settop;
-        opts.WatermarkImage.Buf = imageBuf;
-        opts.WatermarkImage.Opacity = o.Opacity;
-        opts.WatermarkImage.Gravity = 1;
-
-        return Process(buf, opts)
-        //TODO
     }else{
         return Process(buf, opts)
     }
+
 }
 
 func Enlarge(buf []byte, o ImageOptions) (Image, error) {
@@ -219,7 +181,8 @@ func Crop(buf []byte, o ImageOptions) (Image, error) {
 
     opts := BimgOptions(o)
     opts.Crop = true
-    return Process(buf, opts)
+    //return Process(buf, opts)
+    return AddWatermarkImage(o, buf, opts)
 }
 
 func SmartCrop(buf []byte, o ImageOptions) (Image, error) {
@@ -230,7 +193,8 @@ func SmartCrop(buf []byte, o ImageOptions) (Image, error) {
     opts := BimgOptions(o)
     opts.Crop = true
     opts.Gravity = bimg.GravitySmart
-    return Process(buf, opts)
+    //return Process(buf, opts)
+    return AddWatermarkImage(o, buf, opts)
 }
 
 func Rotate(buf []byte, o ImageOptions) (Image, error) {
@@ -445,7 +409,6 @@ func Process(buf []byte, opts bimg.Options) (out Image, err error) {
             out = Image{}
         }
     }()
-    fmt.Printf("%+v\n",opts);
 
     buf, err = bimg.Resize(buf, opts)
     if err != nil {
@@ -455,13 +418,3 @@ func Process(buf []byte, opts bimg.Options) (out Image, err error) {
     mime := GetImageMimeType(bimg.DetermineImageType(buf))
     return Image{Body: buf, Mime: mime}, nil
 }
-/*func AddWatermarkOptions(buf []byte, opts bimg.Options){
-
-}
-
-*/
-//  {Height:668 Width:1000 AreaHeight:0 AreaWidth:0 Top:0 Left:0 Quality:70 Compression:0 Zoom:0 Crop:false SmartCrop:false Enlarge:false Embed:true Flip:false Flop:falsei
-// Force:false NoAutoRotate:false NoProfile:false Interlace:false StripMetadata:false Trim:false Lossless:false Extend:0 Rotate:0 Background:{R:0 G:0 B:0}
-//Gravity:0 Watermark:{Width:0 DPI:0 Margin:0 Opacity:0 NoReplicate:false Text: Font: Background:{R:0 G:0 B:0}}
-// WatermarkImage:{Left:0 Top:0 Buf:[] Opacity:0 Gravity:0}
-//Type:0 Interpolator:bicubic Interpretation:22 GaussianBlur:{Sigma:0 MinAmpl:0} Sharpen:{Radius:0 X1:0 Y2:0 Y3:0 M1:0 M2:0} Threshold:0 OutputICC:}
