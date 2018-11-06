@@ -414,11 +414,21 @@ func Process(buf []byte, opts bimg.Options) (out Image, err error) {
 }
 func Process_WM(buf []byte, opts bimg.Options) (Image) {
     var err error;
+    defer func() {
+        if r := recover(); r != nil {
+            switch value := r.(type) {
+            case error:
+                err = value
+            case string:
+                err = errors.New(value)
+            default:
+                err = errors.New("libvips internal error")
+            }
+            out = Image{}
+        }
+    }()
 
     buf, err = bimg.Resize(buf, opts)
-    if err != nil {
-        return NewError("Maximum allowed pipeline operations exceeded", BadRequest)
-    }
 
     mime := GetImageMimeType(bimg.DetermineImageType(buf))
     return Image{Body: buf, Mime: mime}
