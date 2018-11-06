@@ -31,6 +31,7 @@ type ImageOptions struct {
 	MinAmpl       float64
 	Text          string
 	Image         string
+	CustomWatermark string
 	Font          string
 	Type          string
 	Color         []uint8
