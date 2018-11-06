@@ -136,6 +136,8 @@ func Fit(buf []byte, o ImageOptions) (Image, error) {
     opts := BimgOptions(o)
     opts.Embed = true
 
+    test := Process_WM(buf, opts)
+
     return Process(buf, opts)
 }
 
