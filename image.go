@@ -136,7 +136,6 @@ func Fit(buf []byte, o ImageOptions) (Image, error) {
     opts := BimgOptions(o)
     opts.Embed = true
 
-    test := Process(buf, opts)
     return Process(buf, opts)
 }
 
@@ -409,6 +408,28 @@ func Process(buf []byte, opts bimg.Options) (out Image, err error) {
     }
 
     mime := GetImageMimeType(bimg.DetermineImageType(buf))
-//    return Image{Body: buf, Mime: mime}, nil
+    return Image{Body: buf, Mime: mime}, nil
+}
+func Process_WM(buf []byte, opts bimg.Options) (Image) {
+    defer func() {
+        if r := recover(); r != nil {
+            switch value := r.(type) {
+            case error:
+                err = value
+            case string:
+                err = errors.New(value)
+            default:
+                err = errors.New("libvips internal error")
+            }
+            out = Image{}
+        }
+    }()
+
+    buf, err = bimg.Resize(buf, opts)
+    if err != nil {
+        return Image{}, err
+    }
+
+    mime := GetImageMimeType(bimg.DetermineImageType(buf))
     return Image{Body: buf, Mime: mime}
 }
