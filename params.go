@@ -149,6 +149,7 @@ func mapImageParams(params map[string]interface{}) ImageOptions {
 		NoProfile:     params["noprofile"].(bool),
 		StripMetadata: params["stripmeta"].(bool),
 		Opacity:       float32(params["opacity"].(float64)),
+		WatermarkOpacity:       float32(params["watermarkopacity"].(float64)),
 		Extend:        params["extend"].(bimg.Extend),
 		Gravity:       params["gravity"].(bimg.Gravity),
 		Colorspace:    params["colorspace"].(bimg.Interpretation),

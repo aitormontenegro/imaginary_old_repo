@@ -27,6 +27,7 @@ type ImageOptions struct {
 	NoProfile     bool
 	StripMetadata bool
 	Opacity       float32
+	WatermarkOpacity       float32
 	Sigma         float64
 	MinAmpl       float64
 	Text          string

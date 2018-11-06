@@ -144,7 +144,11 @@ func AddWatermarkImage (o ImageOptions, buf2 []byte, opts bimg.Options)(Image, e
             return Image{}, swaperr
         }
         o.Image = o.CustomWatermark;
-        o.Opacity = 1.1
+        if o.WatermarkOpacity != 0 {
+            o.Opacity = o.WatermarkOpacity
+        } else {
+            o.Opacity = 1.1
+        }
 
         return watermarkImage(swapimage.Body, o)
     }else{
@@ -316,16 +320,18 @@ func watermarkImage(buf []byte, o ImageOptions) (Image, error) {
     }
 
 
+
     var origimagwidth = meta.Size.Width;
     var origimagheight = meta.Size.Height;
     var waterimagwidth = metawatermark.Size.Width;
     var waterimagheight = metawatermark.Size.Height;
 
-   // fmt.Printf("%+v\n",meta);
+  /* fmt.Printf("%+v\n",meta);
     fmt.Printf("%s\n",origimagwidth);
     fmt.Printf("%s\n",origimagheight);
     fmt.Printf("%s\n",waterimagwidth);
     fmt.Printf("%s\n",waterimagheight);
+    */
 
     var settop = (origimagheight/2) - (waterimagheight/2)
     var setleft = (origimagwidth/2) - (waterimagwidth/2)
