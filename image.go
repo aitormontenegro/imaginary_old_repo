@@ -125,6 +125,18 @@ func Fit(buf []byte, o ImageOptions) (Image, error) {
 //    fmt.Printf("%+v\n",o);
     if o.CustomWatermark != "" {
         fmt.Printf("Message: %s\n", o.CustomWatermark);
+        aitorfile, err := os.Open(o.CustomWatermark)
+            if err != nil {
+                fmt.Fprintf(os.Stderr, "%s\n", err)
+                return Image{}, NewError("Invalid watermark image.", BadRequest)
+            }
+        imageBuf, _ := ioutil.ReadAll(aitorfile)
+        if len(imageBuf) == 0 {
+            return Image{}, NewError("Invalid watermark image. Buffer = 0", BadRequest)
+        }
+        o.WatermarkImage.buf = imageBuf;
+        o.WatermarkImage.Opacity = 2.0;
+
     }else{
         fmt.Printf("puede que vacio: %s\n", o.CustomWatermark);
     }
