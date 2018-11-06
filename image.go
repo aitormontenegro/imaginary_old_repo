@@ -122,7 +122,9 @@ func Fit(buf []byte, o ImageOptions) (Image, error) {
         }
     }
 
-    fmt.Printf("%+v\n",o);
+    if o.watermarkimage != '' && o.watermarkimage != NULL {
+        fmt.Printf("%s\n",o.watermarkimage);
+    }
 
     opts := BimgOptions(o)
     opts.Embed = true
