@@ -136,10 +136,10 @@ func Fit(buf []byte, o ImageOptions) (Image, error) {
     return AddWatermarkImage(o, buf, opts)
 }
 
-func AddWatermarkImage (o ImageOptions, buf []byte, opts bimg.Options)(Image, error){
+func AddWatermarkImage (o ImageOptions, buf2 []byte, opts bimg.Options)(Image, error){
 
     if o.CustomWatermark != "" {
-        swapimage, swaperr :=  Process(buf, opts)
+        swapimage, swaperr :=  Process(buf2, opts)
         if swaperr != nil {
             return Image{}, swaperr
         }
@@ -148,7 +148,7 @@ func AddWatermarkImage (o ImageOptions, buf []byte, opts bimg.Options)(Image, er
 
         return watermarkImage(swapimage.Body, o)
     }else{
-        return Process(buf, opts)
+        return Process(buf2, opts)
     }
 
 }
