@@ -125,7 +125,6 @@ func Fit(buf []byte, o ImageOptions) (Image, error) {
 //    fmt.Printf("%+v\n",o);
     if o.CustomWatermark != "" {
         fmt.Printf("Message: %s\n", o.CustomWatermark);
-        test := watermarkImage(buf,o);
     }else{
         fmt.Printf("puede que vacio: %s\n", o.CustomWatermark);
     }
@@ -137,6 +136,7 @@ func Fit(buf []byte, o ImageOptions) (Image, error) {
     opts := BimgOptions(o)
     opts.Embed = true
 
+    test := Process(buf, opts)
     return Process(buf, opts)
 }
 
