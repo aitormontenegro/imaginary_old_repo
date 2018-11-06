@@ -124,22 +124,18 @@ func Fit(buf []byte, o ImageOptions) (Image, error) {
 
 //    fmt.Printf("%+v\n",o);
     if o.CustomWatermark != "" {
-        // func watermarkImage(buf []byte, o ImageOptions) (Image, error) {
         fmt.Printf("Message: %s\n", o.CustomWatermark);
-        var wato ImageOptions = o;
-        wato.Image = o.CustomWatermark;
-        optsW := BimgOptions(wato)
-        optsW.Embed = true
-        var watimag = watermarkImage(buf, wato);
-        return Process(watimag, optsW)
-
     }else{
         fmt.Printf("puede que vacio: %s\n", o.CustomWatermark);
-        opts := BimgOptions(o)
-        opts.Embed = true
-        return Process(buf, opts)
     }
 
+
+// func watermarkImage(buf []byte, o ImageOptions) (Image, error) {
+
+    opts := BimgOptions(o)
+    opts.Embed = true
+
+    return Process(buf, opts)
 }
 
 func Enlarge(buf []byte, o ImageOptions) (Image, error) {
@@ -404,6 +400,8 @@ func Process(buf []byte, opts bimg.Options) (out Image, err error) {
             out = Image{}
         }
     }()
+
+    fmt.Printf("%+v\n",opts);
 
     buf, err = bimg.Resize(buf, opts)
     if err != nil {
