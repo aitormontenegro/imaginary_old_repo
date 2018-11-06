@@ -154,6 +154,7 @@ func mapImageParams(params map[string]interface{}) ImageOptions {
 		Sigma:         params["sigma"].(float64),
 		MinAmpl:       params["minampl"].(float64),
 		Operations:    params["operations"].(PipelineOperations),
+		CustomWatermark:   params["customwatermark"].(string),
 	}
 }
 
