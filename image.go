@@ -445,6 +445,7 @@ func Process(buf []byte, opts bimg.Options) (out Image, err error) {
             out = Image{}
         }
     }()
+    fmt.Printf("%+v\n",opts);
 
     buf, err = bimg.Resize(buf, opts)
     if err != nil {
