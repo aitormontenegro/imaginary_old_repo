@@ -125,29 +125,21 @@ func Fit(buf []byte, o ImageOptions) (Image, error) {
 //    fmt.Printf("%+v\n",o);
     if o.CustomWatermark != "" {
         fmt.Printf("Message: %s\n", o.CustomWatermark);
-        aitorfile, err := os.Open(o.CustomWatermark)
-            if err != nil {
-                fmt.Fprintf(os.Stderr, "%s\n", err)
-                return Image{}, NewError("Invalid watermark image.", BadRequest)
-            }
-        imageBuf, _ := ioutil.ReadAll(aitorfile)
-        if len(imageBuf) == 0 {
-            return Image{}, NewError("Invalid watermark image. Buffer = 0", BadRequest)
-        }
-        o.WatermarkImage.buf = imageBuf;
-        o.WatermarkImage.Opacity = 2.0;
+        var test = Process_WM(buf, o);
 
+// func Process_WM(buf []byte, o ImageOptions) (Image, error) {
     }else{
         fmt.Printf("puede que vacio: %s\n", o.CustomWatermark);
     }
 
 
-// func watermarkImage(buf []byte, o ImageOptions) (Image, error) {
+   // func watermarkImage(buf []byte, o ImageOptions) (Image, error) {
+   // func Process(buf []byte, opts bimg.Options) (out Image, err error) {
 
     opts := BimgOptions(o)
     opts.Embed = true
 
-    return Process(buf, opts)
+    return Process(test, opts)
 }
 
 func Enlarge(buf []byte, o ImageOptions) (Image, error) {
@@ -413,7 +405,35 @@ func Process(buf []byte, opts bimg.Options) (out Image, err error) {
         }
     }()
 
-    fmt.Printf("%+v\n",opts);
+    buf, err = bimg.Resize(buf, opts)
+    if err != nil {
+        return Image{}, err
+    }
+
+    mime := GetImageMimeType(bimg.DetermineImageType(buf))
+    return Image{Body: buf, Mime: mime}, nil
+}
+func Process_WM(buf []byte, o ImageOptions) (Image, error) {
+
+   // func watermarkImage(buf []byte, o ImageOptions) (Image, error) {
+   // func Process(buf []byte, opts bimg.Options) (out Image, err error) {
+
+    opts := BimgOptions(o)
+    opts.Embed = true
+
+    defer func() {
+        if r := recover(); r != nil {
+            switch value := r.(type) {
+            case error:
+                err = value
+            case string:
+                err = errors.New(value)
+            default:
+                err = errors.New("libvips internal error")
+            }
+            out = Image{}
+        }
+    }()
 
     buf, err = bimg.Resize(buf, opts)
     if err != nil {
