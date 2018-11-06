@@ -71,6 +71,7 @@ func BimgOptions(o ImageOptions) bimg.Options {
 		Extend:         o.Extend,
 		Interpretation: o.Colorspace,
 		StripMetadata:  o.StripMetadata,
+        CustomWatermark o.CustomWatermark,
 		Type:           ImageType(o.Type),
 		Rotate:         bimg.Angle(o.Rotate),
 	}
