@@ -131,7 +131,7 @@ func Fit(buf []byte, o ImageOptions) (Image, error) {
         optsW := BimgOptions(wato)
         optsW.Embed = true
         var watimag = watermarkImage(buf, optsW);
-        return Process(watimag, opts)
+        return Process(watimag, optsW)
 
     }else{
         fmt.Printf("puede que vacio: %s\n", o.CustomWatermark);
