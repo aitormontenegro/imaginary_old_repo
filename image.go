@@ -144,7 +144,7 @@ func AddWatermarkImage (o ImageOptions, buf2 []byte, opts bimg.Options)(Image, e
             return Image{}, swaperr
         }
         o.Image = o.CustomWatermark;
-        if o.WatermarkOpacity != 0 {
+        if o.WatermarkOpacity != '' {
             o.Opacity = o.WatermarkOpacity
         } else {
             o.Opacity = 1.2
