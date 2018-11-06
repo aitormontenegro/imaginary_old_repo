@@ -46,6 +46,7 @@ var allowedParams = map[string]string{
 	"sigma":       "float",
 	"minampl":     "float",
 	"operations":  "json",
+	"customwatermark":       "string",
 }
 
 func readParams(query url.Values) ImageOptions {
