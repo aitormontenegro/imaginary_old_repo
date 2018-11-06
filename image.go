@@ -122,8 +122,8 @@ func Fit(buf []byte, o ImageOptions) (Image, error) {
         }
     }
 
-    fmt.Printf("%+v\n",o);
-    fmt.Printf("%s\n",o.CustomWatermark);
+    #fmt.Printf("%+v\n",o);
+    #    fmt.Printf("%s\n",o.CustomWatermark);
 
 
     opts := BimgOptions(o)
