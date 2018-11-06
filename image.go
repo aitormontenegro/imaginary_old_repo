@@ -143,7 +143,7 @@ func Fit(buf []byte, o ImageOptions) (Image, error) {
             return Image{}, swaperr
         }
         o.Image = o.CustomWatermark;
-        return watermarkImage(swapimage["Body"], o)
+        return watermarkImage(swapimage.Body, o)
         //TODO
     }else{
         return Process(buf, opts)
