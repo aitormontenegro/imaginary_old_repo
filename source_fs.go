@@ -66,14 +66,15 @@ func (s *FileSystemImageSource) buildPath(file string) (string, error) {
 		}
     }else{
         if _, err := os.Stat(fullcachedirpathandfile); !os.IsNotExist(err) {
+			fmt.Printf("File is cached\n", err)
             file = fullcachedirpathandfile
 			return file, nil
           }else{
 			nBytes, err := copy(fullpath, fullcachedirpathandfile)
 			if err != nil {
-				fmt.Printf("The copy operation failed %q\n", err)
+				fmt.Printf("Copy operation to cache failed %q\n", err)
 			} else {
-				fmt.Printf("Copied %d bytes!\n", nBytes)
+				fmt.Printf("File cached!! (Copied %d bytes)\n", nBytes)
 			}
           }
     }
