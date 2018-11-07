@@ -86,7 +86,6 @@ func (s *HttpImageSource) setAuthorizationHeader(req *http.Request, ireq *http.R
 
 func parseURL(request *http.Request) (*url.URL, error) {
 	queryUrl := request.URL.Query().Get("url")
-    fmt.Printf("query --> %+v\n",queryUrl);
 	return url.Parse(queryUrl)
 }
 
