@@ -38,8 +38,8 @@ func imageController(o ServerOptions, operation Operation) func(http.ResponseWri
 			return
 		}
 
+        fmt.Printf("--> %s\n",req);
 		buf, err := imageSource.GetImage(req)
-        fmt.Printf("--> %s\n",buf);
 		if err != nil {
 			ErrorReply(req, w, NewError(err.Error(), BadRequest), o)
 			return
