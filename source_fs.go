@@ -67,7 +67,7 @@ func (s *FileSystemImageSource) buildPath(file string) (string, error) {
 		}
     }else{
         if _, err := os.Stat(fullcachedirpathandfile); !os.IsNotExist(err) {
-			fmt.Printf("File is cached\n", err)
+			fmt.Printf("Serving cached file\n", err)
             file = fullcachedirpathandfile
 			return file, nil
           }else{
