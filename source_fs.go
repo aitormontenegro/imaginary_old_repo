@@ -123,14 +123,17 @@ func copy(src, dst string) (int64, error) {
 		o.Width = 100;
 		image, err := Fit(source, o)
 
-	var destinationFile = "/tmp/file.jpg"
-	err = ioutil.WriteFile(destinationFile, image.Body, 0774)
-	if err != nil {
-		fmt.Println("Error creating", destinationFile)
-		fmt.Println(err)
-		return 0, err
-	}
+		var destinationFile = "/tmp/file2.jpg"
+		err = ioutil.WriteFile(destinationFile, image.Body, 0774)
+		if err != nil {
+			fmt.Println("Error creating", destinationFile)
+			fmt.Println(err)
+			return 0, err
+		}
 
+		return 0, err
+
+		/*
         destination, err := os.Create(dst)
         if err != nil {
                 return 0, err
@@ -138,4 +141,5 @@ func copy(src, dst string) (int64, error) {
         defer destination.Close()
         nBytes, err := io.Copy(destination, source2)
         return nBytes, err
+		*/
 }
