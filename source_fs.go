@@ -124,7 +124,8 @@ func copy(src, dst string) (int64, error) {
 		o.Width = 100;
 		image, err := Fit(source, o)
 
-		sourceb := bytes.NewReader(image);
+		sourceb := bufio.NewReader(image);
+		_, err = buffer.Read(sourceb)
 
         destination, err := os.Create(dst)
         if err != nil {
