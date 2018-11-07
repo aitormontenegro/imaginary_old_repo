@@ -23,6 +23,7 @@ func (s *HttpImageSource) Matches(r *http.Request) bool {
 }
 
 func (s *HttpImageSource) GetImage(req *http.Request) ([]byte, error) {
+    fmt.Printf("--> %s\n",req);
 	url, err := parseURL(req)
 	if err != nil {
 		return nil, ErrInvalidImageURL
