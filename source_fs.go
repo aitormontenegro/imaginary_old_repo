@@ -121,8 +121,7 @@ func copy(src, dst string) (int64, error) {
 
 		var o ImageOptions;
 		o.Width = 100;
-
-		image, err := Operation.Run(source, opts)
+		image, err := Operation.Run(source, o)
 
 /*
 		var test, error = image.Fit(source, o)
