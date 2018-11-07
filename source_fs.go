@@ -119,6 +119,7 @@ func copy(src, dst string) (int64, error) {
         }
         defer source.Close()
 
+		Operation Operation;
 		var o ImageOptions;
 		o.Width = 100;
 		image, err := Operation.Run(source, o)
