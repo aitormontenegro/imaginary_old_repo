@@ -41,6 +41,7 @@ func (s *FileSystemImageSource) buildPath(file string) (string, error) {
     fmt.Printf("File --> %s\n",file);
     fmt.Printf("\n\n CacheDir --> %s\n\n",s.Config.CacheDirPath);
 	file = path.Clean(path.Join(s.Config.MountPath, file))
+    fmt.Printf("File --> %s\n",file);
 	if strings.HasPrefix(file, s.Config.MountPath) == false {
 		return "", ErrInvalidFilePath
 	}
