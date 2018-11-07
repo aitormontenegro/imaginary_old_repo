@@ -41,7 +41,7 @@ type Operation func([]byte, ImageOptions) (Image, error)
 
 // Run performs the image transformation
 func (o Operation) Run(buf []byte, opts ImageOptions) (Image, error) {
-    fmt.Printf("%+v\n",opts);
+    fmt.Printf("%+v\n",o);
     return o(buf, opts)
 }
 
