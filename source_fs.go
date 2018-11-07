@@ -9,6 +9,7 @@ import (
 	"strings"
     "fmt"
     "path/filepath"
+	"gopkg.in/h2non/bimg.v1"
 )
 
 const ImageSourceTypeFileSystem ImageSourceType = "fs"
