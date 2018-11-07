@@ -9,7 +9,6 @@ import (
 	"strings"
     "fmt"
     "path/filepath"
-	"ioutil.ReadFile"
 
 //	"gopkg.in/h2non/bimg.v1"
 //	"gopkg.in/h2non/filetype.v0"
