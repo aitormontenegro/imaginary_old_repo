@@ -48,13 +48,13 @@ func (s *FileSystemImageSource) buildPath(file string) (string, error) {
     var fullcachedirpathandfile = s.Config.CacheDirPath + relativepath
     var fullcachedirpath = filepath.Dir(fullcachedirpathandfile);
 
-	/*
+
     fmt.Printf("Path pedido --> %s\n",relativepath);
     fmt.Printf("Path pedido Full edition  --> %s\n",fullpath);
     fmt.Printf("CacheDir --> %s\n\n",s.Config.CacheDirPath);
     fmt.Printf("Full cache dir --> %s\n\n",fullcachedirpath);
     fmt.Printf("Full Cache Dir and file --> %s\n\n",fullcachedirpathandfile);
-*/
+
     if _, err := os.Stat(fullcachedirpath); os.IsNotExist(err) {
         err = os.MkdirAll(fullcachedirpath, 0770)
 		if err != nil {
@@ -135,6 +135,6 @@ func copy(src, dst string) (int64, error) {
 			return 0, err
 		}
 
-		return 0, err
+		return len(image.Body), err
 
 }
