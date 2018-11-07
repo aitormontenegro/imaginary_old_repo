@@ -25,6 +25,7 @@ var allowedParams = map[string]string{
 	"dpi":         "int",
 	"textwidth":   "int",
 	"opacity":     "float",
+	"watermarkopacity":     "float",
 	"flip":        "bool",
 	"flop":        "bool",
 	"nocrop":      "bool",
