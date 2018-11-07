@@ -3,6 +3,7 @@ package main
 import (
     "os"
 	"io"
+	"ioutil"
 	"net/http"
 	"path"
 	"strings"
