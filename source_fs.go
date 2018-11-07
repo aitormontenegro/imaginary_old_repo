@@ -128,7 +128,7 @@ func copy(src, dst string) (int64, error) {
 
 	fmt.Printf("3. %+v\n",o);
 
-		var destinationFile = "/tmp/file2.jpg"
+		var destinationFile = dst
 		err = ioutil.WriteFile(destinationFile, image.Body, 0774)
 		if err != nil {
 			fmt.Println("Error creating file %s", destinationFile)
@@ -138,13 +138,4 @@ func copy(src, dst string) (int64, error) {
 
 		return 0, err
 
-		/*
-        destination, err := os.Create(dst)
-        if err != nil {
-                return 0, err
-        }
-        defer destination.Close()
-        nBytes, err := io.Copy(destination, source2)
-        return nBytes, err
-		*/
 }
