@@ -9,7 +9,8 @@ import (
 	"strings"
     "fmt"
     "path/filepath"
-	"bytes"
+	"bufio"
+	"buffer"
 
 //	"gopkg.in/h2non/bimg.v1"
 //	"gopkg.in/h2non/filetype.v0"
