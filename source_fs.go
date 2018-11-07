@@ -9,7 +9,9 @@ import (
 	"strings"
     "fmt"
     "path/filepath"
-	"gopkg.in/h2non/bimg.v1"
+
+//	"gopkg.in/h2non/bimg.v1"
+//	"gopkg.in/h2non/filetype.v0"
 )
 
 const ImageSourceTypeFileSystem ImageSourceType = "fs"
@@ -117,8 +119,9 @@ func copy(src, dst string) (int64, error) {
         }
         defer source.Close()
 
-		var o ImageOptions;
+/*		var o ImageOptions;
 		var test, error = image.Fit(source, o)
+		*/
 
         destination, err := os.Create(dst)
         if err != nil {
