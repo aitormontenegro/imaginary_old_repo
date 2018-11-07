@@ -54,14 +54,27 @@ func (s *FileSystemImageSource) buildPath(file string) (string, error) {
 
     if _, err := os.Stat(fullcachedirpath); os.IsNotExist(err) {
         os.Mkdir(fullcachedirpath, mode)
-        io.Copy(fullcachedirpathandfile,fullpath)
+		nBytes, err := copy(fullpath, fullcachedirpathandfile)
+		if err != nil {
+			fmt.Printf("The copy operation failed %q\n", err)
+		} else {
+			fmt.Printf("Copied %d bytes!\n", nBytes)
+		}
     }else{
         if _, err := os.Stat(fullcachedirpathandfile); !os.IsNotExist(err) {
             file = fullcachedirpathandfile
           }else{
-            io.Copy(fullcachedirpathandfile,fullpath)
+			nBytes, err := copy(fullpath, fullcachedirpathandfile)
+			if err != nil {
+				fmt.Printf("The copy operation failed %q\n", err)
+			} else {
+				fmt.Printf("Copied %d bytes!\n", nBytes)
+			}
           }
     }
+
+
+
 
 	if strings.HasPrefix(file, s.Config.MountPath) == false {
 		return "", ErrInvalidFilePath
@@ -83,4 +96,28 @@ func (s *FileSystemImageSource) getFileParam(r *http.Request) string {
 
 func init() {
 	RegisterSource(ImageSourceTypeFileSystem, NewFileSystemImageSource)
+}
+func copy(src, dst string) (int64, error) {
+        sourceFileStat, err := os.Stat(src)
+        if err != nil {
+                return 0, err
+        }
+
+        if !sourceFileStat.Mode().IsRegular() {
+                return 0, fmt.Errorf("%s is not a regular file", src)
+        }
+
+        source, err := os.Open(src)
+        if err != nil {
+                return 0, err
+        }
+        defer source.Close()
+
+        destination, err := os.Create(dst)
+        if err != nil {
+                return 0, err
+        }
+        defer destination.Close()
+        nBytes, err := io.Copy(destination, source)
+        return nBytes, err
 }
