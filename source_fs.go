@@ -114,7 +114,7 @@ func copy(src, dst string) (int64, error) {
         }
 
 //        source, err := os.Open(src)
-		source, err := ReadFile(src)
+		source, err := ioutil.ReadFile(src)
         if err != nil {
                 return 0, err
         }
