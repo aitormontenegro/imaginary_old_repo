@@ -44,16 +44,16 @@ func (s *FileSystemImageSource) buildPath(file string) (string, error) {
 	file = path.Clean(path.Join(s.Config.MountPath, file))
     var fullpath = file
     var fullcachedirpathandfile = s.Config.CacheDirPath + relativepath
-
-    fmt.Printf("File --> %s\n",relativepath);
-    fmt.Printf("File --> %s\n",fullpath);
-    fmt.Printf("CacheDir --> %s\n\n",s.Config.CacheDirPath);
-    fmt.Printf("Full Cache Dir and file --> %s\n\n",fullcachedirpathandfile);
     var fullcachedirpath = filepath.Dir(fullcachedirpathandfile);
+
+    fmt.Printf("Path pedido --> %s\n",relativepath);
+    fmt.Printf("Path pedido Full edition  --> %s\n",fullpath);
+    fmt.Printf("CacheDir --> %s\n\n",s.Config.CacheDirPath);
     fmt.Printf("Full cache dir --> %s\n\n",fullcachedirpath);
+    fmt.Printf("Full Cache Dir and file --> %s\n\n",fullcachedirpathandfile);
 
     if _, err := os.Stat(fullcachedirpath); os.IsNotExist(err) {
-        os.Mkdir(fullcachedirpath, mode)
+        os.Mkdir(fullcachedirpath, 0770)
 		nBytes, err := copy(fullpath, fullcachedirpathandfile)
 		if err != nil {
 			fmt.Printf("The copy operation failed %q\n", err)
