@@ -5,7 +5,6 @@ import (
 	"io/ioutil"
 	"net/http"
 	"path"
-	"strings"
     "fmt"
     "path/filepath"
 
