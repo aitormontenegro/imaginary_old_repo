@@ -10,7 +10,7 @@ import (
     "fmt"
     "path/filepath"
 
-	"gopkg.in/h2non/bimg.v1"
+//	"gopkg.in/h2non/bimg.v1"
 //	"gopkg.in/h2non/filetype.v0"
 )
 
@@ -121,6 +121,9 @@ func copy(src, dst string) (int64, error) {
 
 		var o ImageOptions;
 		o.Width = 100;
+
+		image, err := Operation.Run(source, opts)
+
 /*
 		var test, error = image.Fit(source, o)
 		*/
