@@ -119,10 +119,11 @@ func copy(src, dst string) (int64, error) {
                 return 0, err
         }
 
-		sourceb := bytes.NewReader(source);
 		var o ImageOptions;
 		o.Width = 100;
-		image, err := Fit(sourceb, o)
+		image, err := Fit(source, o)
+
+		sourceb := bytes.NewReader(image);
 
         destination, err := os.Create(dst)
         if err != nil {
