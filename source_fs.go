@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"path"
 	"strings"
+    "fmt"
 )
 
 const ImageSourceTypeFileSystem ImageSourceType = "fs"
@@ -23,8 +24,8 @@ func (s *FileSystemImageSource) Matches(r *http.Request) bool {
 
 func (s *FileSystemImageSource) GetImage(r *http.Request) ([]byte, error) {
 
-    fmt.Printf("--> %s\n",req);
 	file := s.getFileParam(r)
+    fmt.Printf("--> %s\n",file);
 	if file == "" {
 		return nil, ErrMissingParamFile
 	}
