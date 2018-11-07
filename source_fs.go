@@ -6,6 +6,7 @@ import (
 	"path"
 	"strings"
     "fmt"
+    "path/filepath"
 )
 
 const ImageSourceTypeFileSystem ImageSourceType = "fs"
@@ -38,10 +39,18 @@ func (s *FileSystemImageSource) GetImage(r *http.Request) ([]byte, error) {
 }
 
 func (s *FileSystemImageSource) buildPath(file string) (string, error) {
-    fmt.Printf("File --> %s\n",file);
-    fmt.Printf("\n\n CacheDir --> %s\n\n",s.Config.CacheDirPath);
+    var relativepath = file
 	file = path.Clean(path.Join(s.Config.MountPath, file))
-    fmt.Printf("File --> %s\n",file);
+    var fullpath = file
+    var fullcachedirpathandfile = s.Config.CacheDirPath + relativepath
+
+    fmt.Printf("File --> %s\n",relativepath);
+    fmt.Printf("File --> %s\n",fullpath);
+    fmt.Printf("CacheDir --> %s\n\n",s.Config.CacheDirPath);
+    fmt.Printf("Full Cache Dir and file --> %s\n\n",fullcachedirpathandfile);
+    var fullcachedirpath = filepath.Dir(fullcachedirpathandfile);
+    fmt.Printf("Full cache dir --> %s\n\n",fullcachedirpath);
+
 	if strings.HasPrefix(file, s.Config.MountPath) == false {
 		return "", ErrInvalidFilePath
 	}
