@@ -70,8 +70,6 @@ func (s *FileSystemImageSource) buildPath(file string) (string, error) {
     }else{
         if _, err := os.Stat(fullcachedirpathandfile); !os.IsNotExist(err) {
 			fmt.Printf("Serving cached file\n", err)
-            file = fullcachedirpathandfile
-			return file, nil
           }else{
 			nBytes, err := copy(fullpath, fullcachedirpathandfile)
 			if err != nil {
@@ -82,9 +80,11 @@ func (s *FileSystemImageSource) buildPath(file string) (string, error) {
           }
     }
 
-	if strings.HasPrefix(file, s.Config.MountPath) == false {
+    file = fullcachedirpathandfile
+/*	if strings.HasPrefix(file, s.Config.MountPath) == false {
 		return "", ErrInvalidFilePath
 	}
+	*/
 	return file, nil
 }
 
@@ -119,9 +119,10 @@ func copy(src, dst string) (int64, error) {
         }
 
 		var o ImageOptions;
-		o.Width = 100;
-		o.Height = 100;
+		o.Width = 1200;
+		o.Height = 840;
 		o.Quality = 100;
+		o.StripMetadata = true
 
 		image, err := Fit(source, o)
 
