@@ -9,6 +9,7 @@ import (
 	"strings"
     "fmt"
     "path/filepath"
+	"ioutil.ReadFile"
 
 //	"gopkg.in/h2non/bimg.v1"
 //	"gopkg.in/h2non/filetype.v0"
@@ -114,10 +115,11 @@ func copy(src, dst string) (int64, error) {
         }
 
 //        source, err := os.Open(src)
-		source, err := ioutil.ReadFile(src)
+		Source, err := ReadFile(src)
         if err != nil {
                 return 0, err
         }
+        defer source.Close()
 
 		var o ImageOptions;
 		o.Width = 100;
