@@ -54,7 +54,7 @@ func (s *FileSystemImageSource) buildPath(file string) (string, error) {
     fmt.Printf("Full Cache Dir and file --> %s\n\n",fullcachedirpathandfile);
 
     if _, err := os.Stat(fullcachedirpath); os.IsNotExist(err) {
-        os.Mkdir(fullcachedirpath, 0770)
+        os.MkdirAll(fullcachedirpath, 0770)
 		nBytes, err := copy(fullpath, fullcachedirpathandfile)
 		if err != nil {
 			fmt.Printf("The copy operation failed %q\n", err)
