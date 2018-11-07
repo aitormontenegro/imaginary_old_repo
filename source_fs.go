@@ -131,7 +131,7 @@ func copy(src, dst string) (int64, error) {
 
 		}
 		defer fdest.Close();
-		jpeg.Encode(fdest, image.Image, nil);
+		jpeg.Encode(fdest, image.Body, nil);
 
 
         destination, err := os.Create(dst)
