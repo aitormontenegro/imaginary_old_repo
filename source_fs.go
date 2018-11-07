@@ -56,18 +56,18 @@ func (s *FileSystemImageSource) buildPath(file string) (string, error) {
     if _, err := os.Stat(fullcachedirpath); os.IsNotExist(err) {
         err = os.MkdirAll(fullcachedirpath, 0770)
 		if err != nil {
-			fmt.Printf("mkdir recursive operation faile %q\n", err)
+			fmt.Printf("mkdir recursive operation failed %q\n", err)
 		}
-
 		nBytes, err := copy(fullpath, fullcachedirpathandfile)
 		if err != nil {
-			fmt.Printf("The copy operation failed %q\n", err)
+			fmt.Printf("Copy operation to cache failed %q\n", err)
 		} else {
-			fmt.Printf("Copied %d bytes!\n", nBytes)
+			fmt.Printf("File cached!! (Copied %d bytes)\n", nBytes)
 		}
     }else{
         if _, err := os.Stat(fullcachedirpathandfile); !os.IsNotExist(err) {
             file = fullcachedirpathandfile
+			return file, nil
           }else{
 			nBytes, err := copy(fullpath, fullcachedirpathandfile)
 			if err != nil {
@@ -77,9 +77,6 @@ func (s *FileSystemImageSource) buildPath(file string) (string, error) {
 			}
           }
     }
-
-
-
 
 	if strings.HasPrefix(file, s.Config.MountPath) == false {
 		return "", ErrInvalidFilePath
