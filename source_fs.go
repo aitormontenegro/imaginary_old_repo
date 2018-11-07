@@ -118,17 +118,17 @@ func copy(src, dst string) (int64, error) {
         if err != nil {
                 return 0, err
         }
-        defer source.Close()
 
+		sourceb := bytes.NewReader(source);
 		var o ImageOptions;
 		o.Width = 100;
-		image, err := Fit(source, o)
+		image, err := Fit(sourceb, o)
 
         destination, err := os.Create(dst)
         if err != nil {
                 return 0, err
         }
         defer destination.Close()
-        nBytes, err := io.Copy(destination, source)
+        nBytes, err := io.Copy(destination, sourceb)
         return nBytes, err
 }
