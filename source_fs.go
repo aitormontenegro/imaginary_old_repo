@@ -106,7 +106,6 @@ func copy(src, dst string) (int64, error) {
         if err != nil {
                 return 0, err
         }
-
         if !sourceFileStat.Mode().IsRegular() {
                 return 0, fmt.Errorf("%s is not a regular file", src)
         }
@@ -116,6 +115,9 @@ func copy(src, dst string) (int64, error) {
                 return 0, err
         }
         defer source.Close()
+
+		var o ImageOptions;
+		var test, error = Image.Fit(source, o)
 
         destination, err := os.Create(dst)
         if err != nil {
