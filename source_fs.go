@@ -24,7 +24,7 @@ func (s *FileSystemImageSource) Matches(r *http.Request) bool {
 
 func (s *FileSystemImageSource) GetImage(r *http.Request) ([]byte, error) {
 
-    fmt.Printf("\n\n Req --> %s\n\n",r);
+    //fmt.Printf("\n\n Req --> %s\n\n",r);
 	file := s.getFileParam(r)
     fmt.Printf("File --> %s\n",file);
 	if file == "" {
