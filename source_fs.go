@@ -121,7 +121,7 @@ func copy(src, dst string) (int64, error) {
 		var o ImageOptions;
 		o.Width = 100;
 		o.Height = 100;
-		o.Quality = 100:
+		o.Quality = 100;
 
 		image, err := Fit(source, o)
 
