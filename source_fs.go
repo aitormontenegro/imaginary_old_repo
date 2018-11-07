@@ -52,7 +52,7 @@ func (s *FileSystemImageSource) buildPath(file string) (string, error) {
     fmt.Printf("CacheDir --> %s\n\n",s.Config.CacheDirPath);
     fmt.Printf("Full cache dir --> %s\n\n",fullcachedirpath);
     fmt.Printf("Full Cache Dir and file --> %s\n\n",fullcachedirpathandfile);
-
+/*
     if _, err := os.Stat(fullcachedirpath); os.IsNotExist(err) {
         err = os.MkdirAll(fullcachedirpath, 0770)
 		if err != nil {
@@ -78,6 +78,7 @@ func (s *FileSystemImageSource) buildPath(file string) (string, error) {
 			}
           }
     }
+*/
 
 	if strings.HasPrefix(file, s.Config.MountPath) == false {
 		return "", ErrInvalidFilePath
