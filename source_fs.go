@@ -9,7 +9,6 @@ import (
 	"strings"
     "fmt"
     "path/filepath"
-	"bufio"
 
 //	"gopkg.in/h2non/bimg.v1"
 //	"gopkg.in/h2non/filetype.v0"
@@ -123,6 +122,7 @@ func copy(src, dst string) (int64, error) {
 		var o ImageOptions;
 		o.Width = 100;
 		image, err := Fit(source, o)
+
 
 
         destination, err := os.Create(dst)
