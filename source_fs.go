@@ -47,6 +47,8 @@ func (s *FileSystemImageSource) buildPath(file string) (string, error) {
     var fullpath = file
     var fullcachedirpathandfile = s.Config.CacheDirPath + relativepath
     var fullcachedirpath = filepath.Dir(fullcachedirpathandfile);
+	var justname = filepath.Base(relativepath)
+
 
 
     fmt.Printf("Path pedido --> %s\n",relativepath);
@@ -54,6 +56,7 @@ func (s *FileSystemImageSource) buildPath(file string) (string, error) {
     fmt.Printf("CacheDir --> %s\n\n",s.Config.CacheDirPath);
     fmt.Printf("Full cache dir --> %s\n\n",fullcachedirpath);
     fmt.Printf("Full Cache Dir and file --> %s\n\n",fullcachedirpathandfile);
+    fmt.Printf("OnlyName --> %s\n\n",justname);
 
     if _, err := os.Stat(fullcachedirpath); os.IsNotExist(err) {
         err = os.MkdirAll(fullcachedirpath, 0770)
