@@ -1,6 +1,7 @@
 package main
 
 import (
+    "os"
 	"io/ioutil"
 	"net/http"
 	"path"
@@ -50,6 +51,11 @@ func (s *FileSystemImageSource) buildPath(file string) (string, error) {
     fmt.Printf("Full Cache Dir and file --> %s\n\n",fullcachedirpathandfile);
     var fullcachedirpath = filepath.Dir(fullcachedirpathandfile);
     fmt.Printf("Full cache dir --> %s\n\n",fullcachedirpath);
+
+    if _, err := os.Stat(fullcachedirpath); os.IsNotExist(err) {
+        os.Mkdir(fullcachedirpath, mode)
+        io.Copy(fullcachedirpathandfile,fullpath)
+    }
 
 	if strings.HasPrefix(file, s.Config.MountPath) == false {
 		return "", ErrInvalidFilePath
