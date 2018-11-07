@@ -54,9 +54,9 @@ func (s *FileSystemImageSource) buildPath(file string) (string, error) {
     fmt.Printf("Full Cache Dir and file --> %s\n\n",fullcachedirpathandfile);
 
     if _, err := os.Stat(fullcachedirpath); os.IsNotExist(err) {
-        err = r.MkdirAll(fullcachedirpath, 0770)
+        err = os.MkdirAll(fullcachedirpath, 0770)
 		if err != nil {
-			fmt.Printf("mkdir recursive operation failed %q\n", err)
+			fmt.Printf("mkdir recursive operation faile %q\n", err)
 		}
 
 		nBytes, err := copy(fullpath, fullcachedirpathandfile)
