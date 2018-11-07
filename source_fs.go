@@ -112,22 +112,19 @@ func copy(src, dst string) (int64, error) {
 	input, err := ioutil.ReadFile(sourceFile)
 	if err != nil {
 		fmt.Println(err)
-		return
+		return 0, fmt.Errorf("Error reading file: %s", src)
 	}
 
-	customfile := input
+	var o ImageOptions;
+	o.Width = 100;
+	image, err := Fit(source, o)
 
-		var o ImageOptions;
-		o.Width = 100;
-		image, err := Fit(source, o)
-
-	err = ioutil.WriteFile(destinationFile, input, 0770)
+	err = ioutil.WriteFile(destinationFile, image, 0770)
 	if err != nil {
-		fmt.Println("Error creating", destinationFile)
 		fmt.Println(err)
-		return
+		return 0, fmt.Errorf("Error creating file: %s", destinationFile)
 	}
 
-	return len(customfile)
+	return len(image)
 
 }
