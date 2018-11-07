@@ -47,9 +47,9 @@ func (s *FileSystemImageSource) buildPath(file string) (string, error) {
     var fullpath = file
     var fullcachedirpathandfile = s.Config.CacheDirPath + relativepath
     var fullcachedirpath = filepath.Dir(fullcachedirpathandfile);
-	var justname = filepath.Base(relativepath)
 
 /*
+	var justname = filepath.Base(relativepath)
     fmt.Printf("Path pedido --> %s\n",relativepath);
     fmt.Printf("Path pedido Full edition  --> %s\n",fullpath);
     fmt.Printf("CacheDir --> %s\n\n",s.Config.CacheDirPath);
