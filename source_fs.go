@@ -24,9 +24,7 @@ func (s *FileSystemImageSource) Matches(r *http.Request) bool {
 
 func (s *FileSystemImageSource) GetImage(r *http.Request) ([]byte, error) {
 
-    //fmt.Printf("\n\n Req --> %s\n\n",r);
 	file := s.getFileParam(r)
-    fmt.Printf("File --> %s\n",file);
 	if file == "" {
 		return nil, ErrMissingParamFile
 	}
@@ -40,6 +38,7 @@ func (s *FileSystemImageSource) GetImage(r *http.Request) ([]byte, error) {
 }
 
 func (s *FileSystemImageSource) buildPath(file string) (string, error) {
+    fmt.Printf("File --> %s\n",file);
     fmt.Printf("\n\n CacheDir --> %s\n\n",s.Config.CacheDirPath);
 	file = path.Clean(path.Join(s.Config.MountPath, file))
 	if strings.HasPrefix(file, s.Config.MountPath) == false {
