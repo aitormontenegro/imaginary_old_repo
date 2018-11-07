@@ -9,6 +9,7 @@ import (
 	"strings"
     "fmt"
     "path/filepath"
+	"ioutil.ReadFile"
 
 //	"gopkg.in/h2non/bimg.v1"
 //	"gopkg.in/h2non/filetype.v0"
@@ -113,7 +114,8 @@ func copy(src, dst string) (int64, error) {
                 return 0, fmt.Errorf("%s is not a regular file", src)
         }
 
-        source, err := os.Open(src)
+//        source, err := os.Open(src)
+		Source, err := ReadFile(src)
         if err != nil {
                 return 0, err
         }
