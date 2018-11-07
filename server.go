@@ -47,6 +47,7 @@ type Endpoints []string
 func (e Endpoints) IsValid(r *http.Request) bool {
 	parts := strings.Split(r.URL.Path, "/")
 	endpoint := parts[len(parts)-1]
+    fmt.Printf("%+v\n",endpoint);
 	for _, name := range e {
 		if endpoint == name {
 			return false
@@ -108,7 +109,6 @@ func NewServerMux(o ServerOptions) http.Handler {
 	mux.Handle(join(o, "/blur"), image(GaussianBlur))
 	mux.Handle(join(o, "/pipeline"), image(Pipeline))
 
-    fmt.Printf("%+v\n",o);
 
 	return mux
 }
