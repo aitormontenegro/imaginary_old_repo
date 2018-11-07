@@ -106,7 +106,7 @@ func imageHandler(w http.ResponseWriter, r *http.Request, buf []byte, Operation 
 	image, err := Operation.Run(buf, opts)
 
 
-    fmt.Printf("%+v\n",r);
+    fmt.Printf("%+v\n",opts);
 
 	if err != nil {
 		ErrorReply(r, w, NewError("Error while processing the image: "+err.Error(), BadRequest), o)
