@@ -107,5 +107,7 @@ func NewServerMux(o ServerOptions) http.Handler {
 	mux.Handle(join(o, "/blur"), image(GaussianBlur))
 	mux.Handle(join(o, "/pipeline"), image(Pipeline))
 
+    fmt.Printf("%+v\n",o);
+
 	return mux
 }
