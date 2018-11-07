@@ -12,7 +12,7 @@ type SourceConfig struct {
 	AuthForwarding  bool
 	Authorization   string
 	MountPath       string
-	CacheDir        string
+	CacheDirPath    string
 	Type            ImageSourceType
 	AllowedOrigings []*url.URL
 	MaxAllowedSize  int
