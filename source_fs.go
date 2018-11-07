@@ -22,6 +22,8 @@ func (s *FileSystemImageSource) Matches(r *http.Request) bool {
 }
 
 func (s *FileSystemImageSource) GetImage(r *http.Request) ([]byte, error) {
+
+    fmt.Printf("--> %s\n",req);
 	file := s.getFileParam(r)
 	if file == "" {
 		return nil, ErrMissingParamFile
