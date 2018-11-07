@@ -119,13 +119,11 @@ func copy(src, dst string) (int64, error) {
         }
         defer source.Close()
 
+		/*
 		Operation Operation;
 		var o ImageOptions;
 		o.Width = 100;
 		image, err := Operation.Run(source, o)
-
-/*
-		var test, error = image.Fit(source, o)
 		*/
 
         destination, err := os.Create(dst)
