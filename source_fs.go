@@ -115,17 +115,15 @@ func copy(src, dst string) (int64, error) {
         }
 
 //        source, err := os.Open(src)
-		Source, err := ReadFile(src)
+		source, err := ioutil.ReadFile(src)
         if err != nil {
                 return 0, err
         }
         defer source.Close()
 
-
 		var o ImageOptions;
 		o.Width = 100;
 		image, err := Fit(source, o)
-
 
         destination, err := os.Create(dst)
         if err != nil {
