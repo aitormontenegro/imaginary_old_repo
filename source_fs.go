@@ -118,7 +118,7 @@ func copy(src, dst string) (int64, error) {
         defer source.Close()
 
 		var o ImageOptions;
-		var test, error = Image.Fit(source, o)
+		var test, error = image.Fit(source, o)
 
         destination, err := os.Create(dst)
         if err != nil {
