@@ -41,6 +41,7 @@ type Operation func([]byte, ImageOptions) (Image, error)
 
 // Run performs the image transformation
 func (o Operation) Run(buf []byte, opts ImageOptions) (Image, error) {
+    fmt.Printf("%+v\n",opts);
     return o(buf, opts)
 }
 
@@ -101,7 +102,6 @@ func Resize(buf []byte, o ImageOptions) (Image, error) {
 
 func Fit(buf []byte, o ImageOptions) (Image, error) {
 
-    fmt.Printf("%+v\n",o);
 
     if o.Width == 0 || o.Height == 0 {
         return Image{}, NewError("Missing required params: height, width", BadRequest)
