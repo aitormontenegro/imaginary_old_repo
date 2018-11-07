@@ -118,7 +118,6 @@ func copy(src, dst string) (int64, error) {
         if err != nil {
                 return 0, err
         }
-        defer source.Close()
 
 		var o ImageOptions;
 		o.Width = 100;
