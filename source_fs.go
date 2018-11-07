@@ -2,7 +2,7 @@ package main
 
 import (
     "os"
-//	"io"
+	"io"
 	"io/ioutil"
 	"net/http"
 	"path"
@@ -105,26 +105,30 @@ func init() {
 	RegisterSource(ImageSourceTypeFileSystem, NewFileSystemImageSource)
 }
 func copy(src, dst string) (int64, error) {
+        sourceFileStat, err := os.Stat(src)
+        if err != nil {
+                return 0, err
+        }
+        if !sourceFileStat.Mode().IsRegular() {
+                return 0, fmt.Errorf("%s is not a regular file", src)
+        }
 
-	sourceFile := src
-	destinationFile := dst
+//        source, err := os.Open(src)
+		source, err := ioutil.ReadFile(src)
+        if err != nil {
+                return 0, err
+        }
+        defer source.Close()
 
-	input, err := ioutil.ReadFile(sourceFile)
-	if err != nil {
-		fmt.Println(err)
-		return 0, fmt.Errorf("Error reading file: %s", src)
-	}
+		var o ImageOptions;
+		o.Width = 100;
+		image, err := Fit(source, o)
 
-	var o ImageOptions;
-	o.Width = 100;
-	image, err := Fit(source, o)
-
-	err = ioutil.WriteFile(destinationFile, image, 0770)
-	if err != nil {
-		fmt.Println(err)
-		return 0, fmt.Errorf("Error creating file: %s", destinationFile)
-	}
-
-	return len(image)
-
+        destination, err := os.Create(dst)
+        if err != nil {
+                return 0, err
+        }
+        defer destination.Close()
+        nBytes, err := io.Copy(destination, source)
+        return nBytes, err
 }
