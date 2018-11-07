@@ -9,7 +9,6 @@ import (
 	"strings"
     "fmt"
     "path/filepath"
-	"image/jpeg"
 
 //	"gopkg.in/h2non/bimg.v1"
 //	"gopkg.in/h2non/filetype.v0"
@@ -124,11 +123,12 @@ func copy(src, dst string) (int64, error) {
 		o.Width = 100;
 		image, err := Fit(source, o)
 
-	err = ioutil.WriteFile("/tmp/file.jpg", image.Body, 0774)
+	var destinationFile = "/tmp/file.jpg"
+	err = ioutil.WriteFile(destinationFile, image.Body, 0774)
 	if err != nil {
 		fmt.Println("Error creating", destinationFile)
 		fmt.Println(err)
-		return
+		return 0, err
 	}
 
         destination, err := os.Create(dst)
