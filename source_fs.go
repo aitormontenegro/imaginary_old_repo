@@ -10,7 +10,6 @@ import (
     "fmt"
     "path/filepath"
 	"bufio"
-	"buffer"
 
 //	"gopkg.in/h2non/bimg.v1"
 //	"gopkg.in/h2non/filetype.v0"
