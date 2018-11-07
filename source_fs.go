@@ -119,7 +119,8 @@ func copy(src, dst string) (int64, error) {
         }
         defer source.Close()
 
-/*		var o ImageOptions;
+		var o ImageOptions;
+/*
 		var test, error = image.Fit(source, o)
 		*/
 
