@@ -119,12 +119,11 @@ func copy(src, dst string) (int64, error) {
         }
         defer source.Close()
 
-		/*
-		Operation Operation;
+
 		var o ImageOptions;
 		o.Width = 100;
-		image, err := Operation.Run(source, o)
-		*/
+		image, err := Operation(source, o)
+
 
         destination, err := os.Create(dst)
         if err != nil {
