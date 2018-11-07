@@ -2,7 +2,6 @@ package main
 
 import (
     "os"
-	"io"
 	"io/ioutil"
 	"net/http"
 	"path"
@@ -121,13 +120,17 @@ func copy(src, dst string) (int64, error) {
 
 		var o ImageOptions;
 		o.Width = 100;
-		o.Heigth = 100;
+		o.Height = 100;
+		o.Quality = 100:
+
 		image, err := Fit(source, o)
+
+	fmt.Printf("3. %+v\n",o);
 
 		var destinationFile = "/tmp/file2.jpg"
 		err = ioutil.WriteFile(destinationFile, image.Body, 0774)
 		if err != nil {
-			fmt.Println("Error creating", destinationFile)
+			fmt.Println("Error creating file %s", destinationFile)
 			fmt.Println(err)
 			return 0, err
 		}
