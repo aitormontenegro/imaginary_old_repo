@@ -138,6 +138,6 @@ func copy(src, dst string) (int64, error) {
 			return 0, err
 		}
 
-		return len(image.Body), err
+		return int64(len(image.Body)), err
 
 }
