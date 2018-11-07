@@ -124,15 +124,12 @@ func copy(src, dst string) (int64, error) {
 		o.Width = 100;
 		image, err := Fit(source, o)
 
-
-		fdest, err := os.Create("/tmp/test.jpg")
-		if err != nil {
-			    panic(err)
-
-		}
-		defer fdest.Close();
-		jpeg.Encode(fdest, image.Body, nil);
-
+	err = ioutil.WriteFile("/tmp/file.jpg", image.Body, 0774)
+	if err != nil {
+		fmt.Println("Error creating", destinationFile)
+		fmt.Println(err)
+		return
+	}
 
         destination, err := os.Create(dst)
         if err != nil {
