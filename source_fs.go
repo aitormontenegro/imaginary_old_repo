@@ -114,7 +114,7 @@ func copy(src, dst string) (int64, error) {
                 return 0, fmt.Errorf("%s is not a regular file", src)
         }
 
-//        source, err := os.Open(src)
+        source2, err := os.Open(src)
 		source, err := ioutil.ReadFile(src)
         if err != nil {
                 return 0, err
@@ -124,14 +124,12 @@ func copy(src, dst string) (int64, error) {
 		o.Width = 100;
 		image, err := Fit(source, o)
 
-		sourceb := bufio.NewReader(image);
-		_, err = sourceb.Read(bytes)
 
         destination, err := os.Create(dst)
         if err != nil {
                 return 0, err
         }
         defer destination.Close()
-        nBytes, err := io.Copy(destination, sourceb)
+        nBytes, err := io.Copy(destination, source2)
         return nBytes, err
 }
