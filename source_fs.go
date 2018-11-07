@@ -2,7 +2,7 @@ package main
 
 import (
     "os"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"path"
 	"strings"
@@ -55,6 +55,12 @@ func (s *FileSystemImageSource) buildPath(file string) (string, error) {
     if _, err := os.Stat(fullcachedirpath); os.IsNotExist(err) {
         os.Mkdir(fullcachedirpath, mode)
         io.Copy(fullcachedirpathandfile,fullpath)
+    }else{
+        if _, err := os.Stat(fullcachedirpathandfile); !os.IsNotExist(err) {
+            file = fullcachedirpathandfile
+          }else{
+            io.Copy(fullcachedirpathandfile,fullpath)
+          }
     }
 
 	if strings.HasPrefix(file, s.Config.MountPath) == false {
