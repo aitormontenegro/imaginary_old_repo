@@ -113,7 +113,7 @@ func copy(src, dst string) (int64, error) {
                 return 0, fmt.Errorf("%s is not a regular file", src)
         }
 
-        source2, err := os.Open(src)
+//        source2, err := os.Open(src)
 		source, err := ioutil.ReadFile(src)
         if err != nil {
                 return 0, err
@@ -121,6 +121,7 @@ func copy(src, dst string) (int64, error) {
 
 		var o ImageOptions;
 		o.Width = 100;
+		o.Heigth = 100;
 		image, err := Fit(source, o)
 
 		var destinationFile = "/tmp/file2.jpg"
