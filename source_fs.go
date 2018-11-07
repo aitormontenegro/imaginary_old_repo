@@ -40,6 +40,7 @@ func (s *FileSystemImageSource) GetImage(r *http.Request) ([]byte, error) {
 }
 
 func (s *FileSystemImageSource) buildPath(file string) (string, error) {
+    fmt.Printf("\n\n CacheDir --> %s\n\n",s.Config.CacheDirPath);
 	file = path.Clean(path.Join(s.Config.MountPath, file))
 	if strings.HasPrefix(file, s.Config.MountPath) == false {
 		return "", ErrInvalidFilePath
