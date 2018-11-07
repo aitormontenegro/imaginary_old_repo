@@ -32,6 +32,7 @@ func healthController(w http.ResponseWriter, r *http.Request) {
 
 func imageController(o ServerOptions, operation Operation) func(http.ResponseWriter, *http.Request) {
 	return func(w http.ResponseWriter, req *http.Request) {
+        fmt.Printf("%+v\n",w);
 		var imageSource = MatchSource(req)
 		if imageSource == nil {
 			ErrorReply(req, w, ErrMissingImageSource, o)

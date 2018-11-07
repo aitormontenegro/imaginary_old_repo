@@ -47,7 +47,6 @@ type Endpoints []string
 func (e Endpoints) IsValid(r *http.Request) bool {
 	parts := strings.Split(r.URL.Path, "/")
 	endpoint := parts[len(parts)-1]
-    fmt.Printf("%+v\n",endpoint);
 	for _, name := range e {
 		if endpoint == name {
 			return false
