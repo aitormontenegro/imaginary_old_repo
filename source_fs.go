@@ -125,7 +125,7 @@ func copy(src, dst string) (int64, error) {
 
 		image, err := Fit(source, o)
 
-	fmt.Printf("3. %+v\n",o);
+//	fmt.Printf("3. %+v\n",o);
 
 		var destinationFile = dst
 		err = ioutil.WriteFile(destinationFile, image.Body, 0774)
