@@ -140,6 +140,9 @@ func Fit(buf []byte, o ImageOptions) (Image, error) {
 
 func AddWatermarkImage (o ImageOptions, buf2 []byte, opts bimg.Options)(Image, error){
 
+    fmt.Printf("%+v\n",o);
+    fmt.Printf("%+v\n",opts);
+
     if o.CustomWatermark != "" {
         swapimage, swaperr :=  Process(buf2, opts)
         if swaperr != nil {
