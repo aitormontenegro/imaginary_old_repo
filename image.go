@@ -154,10 +154,8 @@ func AddWatermarkImage (o ImageOptions, buf2 []byte, opts bimg.Options)(Image, e
             o.Opacity = 1.2
         }
 
-        fmt.Printf("1. %+v\n",o);
         return watermarkImage(swapimage.Body, o)
     }else{
-        fmt.Printf("1. %+v\n",o);
         return Process(buf2, opts)
     }
 
@@ -326,6 +324,7 @@ func watermarkImage(buf []byte, o ImageOptions) (Image, error) {
     }
 
 
+        fmt.Printf("1. %+v\n",o);
 
     var origimagwidth = meta.Size.Width;
     var origimagheight = meta.Size.Height;
