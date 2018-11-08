@@ -64,7 +64,7 @@ func imageController(o ServerOptions, operation Operation) func(http.ResponseWri
            fmt.Printf("mkdir recursive operation failed %q\n", err)
         }
     }else{ // cache path exists
-        if _, err := os.Stat(fullcachedirpathandfile); !os.IsNotExist(err) { // file exists
+        if _, err := os.Stat(cachedfile); !os.IsNotExist(err) { // file exists
            fmt.Printf("- Serve cached file", nil)
         }else{ //file doesn't exists
            fmt.Printf("- go ahead + cache file at the end", nil)
