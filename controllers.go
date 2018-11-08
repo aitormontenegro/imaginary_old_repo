@@ -45,10 +45,16 @@ func imageController(o ServerOptions, operation Operation) func(http.ResponseWri
     mountdir := o.Mount
     cachedir := o.CacheDir
 
+    cachedfile := cachedir+reqfile
+
+
     fmt.Printf("Requested file --> %+v\n", reqfile);
     fmt.Printf("Mount dir --> %+v\n", mountdir);
     fmt.Printf("Cache dir--> %+v\n", cachedir);
+    fmt.Printf("Cached file--> %+v\n", cachedfile);
 
+
+    fmt.Printf("request --> %+v\n",req);
 
 		buf, err := imageSource.GetImage(req)
 		if err != nil {
