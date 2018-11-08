@@ -432,9 +432,10 @@ func Process(buf []byte, opts bimg.Options) (out Image, err error) {
 
     buf, err = bimg.Resize(buf, opts)
     if err != nil {
-        fmt.Printf("1. error\n", nil);
-        //return Image{}, err
+        fmt.Printf("Error converting the image: %s. Serving original image.\n", err);
+        mime := GetImageMimeType(bimg.DetermineImageType(buf))
         return Image{Body: buforig, Mime: mime}, nil
+        //return Image{}, err
     }
 
     mime := GetImageMimeType(bimg.DetermineImageType(buf))
