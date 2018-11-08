@@ -38,11 +38,13 @@ func imageController(o ServerOptions, operation Operation) func(http.ResponseWri
 			return
 		}
 
+        /*
     fmt.Printf("--> %+v\n",req);
     var s *FileSystemImageSource;
-    test1 := s.getFileParam(req);
+    reqfile := s.getFileParam(req);
 
-    fmt.Printf("--> %+v\n",test1);
+    fmt.Printf("Requested file --> %+v\n", reqfile);
+    */
 
 		buf, err := imageSource.GetImage(req)
 		if err != nil {
