@@ -41,7 +41,7 @@ func imageController(o ServerOptions, operation Operation) func(http.ResponseWri
 			return
 		}
 
-    fmt.Printf("--> %+v\n",o);
+    fmt.Printf("--> %+v\n",operation);
     var s *FileSystemImageSource;
 
     reqfile := s.getFileParam(req);
