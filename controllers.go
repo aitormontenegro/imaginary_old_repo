@@ -41,7 +41,10 @@ func imageController(o ServerOptions, operation Operation) func(http.ResponseWri
 			return
 		}
 
-    fmt.Printf("--> %+v\n",operation);
+
+    saveimage := false
+
+//    fmt.Printf("--> %+v\n",operation);
     var s *FileSystemImageSource;
 
     reqfile := s.getFileParam(req);
@@ -49,7 +52,6 @@ func imageController(o ServerOptions, operation Operation) func(http.ResponseWri
     cachedir := o.CacheDir
     cachedfile := cachedir+reqfile
     fullcachedirpath := filepath.Dir(cachedfile);
-
 
     fmt.Printf("Requested file --> %+v\n", reqfile);
     fmt.Printf("Mount dir --> %+v\n", mountdir);
@@ -59,6 +61,7 @@ func imageController(o ServerOptions, operation Operation) func(http.ResponseWri
 
     if _, err := os.Stat(fullcachedirpath); os.IsNotExist(err) {  // cache path doesn't exists
         fmt.Printf("- Create dir + go ahead + cache file at the end", nil)
+        saveimage = true
         err = os.MkdirAll(fullcachedirpath, 0770)
         if err != nil {
            fmt.Printf("mkdir recursive operation failed %q\n", err)
@@ -67,6 +70,7 @@ func imageController(o ServerOptions, operation Operation) func(http.ResponseWri
         if _, err := os.Stat(cachedfile); !os.IsNotExist(err) { // file exists
            fmt.Printf("- Serve cached file", nil)
         }else{ //file doesn't exists
+            saveimage = true
            fmt.Printf("- go ahead + cache file at the end", nil)
         }
     }
@@ -84,7 +88,7 @@ func imageController(o ServerOptions, operation Operation) func(http.ResponseWri
 			return
 		}
 
-		imageHandler(w, req, buf, operation, o)
+		imageHandler(w, req, buf, operation, o, saveimage)
 	}
 }
 
@@ -103,7 +107,16 @@ func determineAcceptMimeType(accept string) string {
 	return ""
 }
 
-func imageHandler(w http.ResponseWriter, r *http.Request, buf []byte, Operation Operation, o ServerOptions) {
+func imageHandler(w http.ResponseWriter, r *http.Request, buf []byte, Operation Operation, o ServerOptions, saveimage bool) {
+
+    if saveimage == true {
+        fmt.Printf("- Save IMAGE = true", nil)
+
+    }else{
+        fmt.Printf("- Save IMAGE = false", nil)
+
+    }
+
 	// Infer the body MIME type via mimesniff algorithm
 	mimeType := http.DetectContentType(buf)
 
