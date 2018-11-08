@@ -124,6 +124,7 @@ func copy(src, dst string) (int64, error) {
 		o.Width = 1200;
 		o.Height = 840;
 		o.Quality = 100;
+		o.Colorspace = 22;
 		o.StripMetadata = true
 
 		image, err := Fit(source, o)
