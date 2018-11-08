@@ -40,9 +40,14 @@ func imageController(o ServerOptions, operation Operation) func(http.ResponseWri
 
     fmt.Printf("--> %+v\n",o);
     var s *FileSystemImageSource;
+
     reqfile := s.getFileParam(req);
+    mountdir := o.Mount
+    cachedir := o.CacheDir
 
     fmt.Printf("Requested file --> %+v\n", reqfile);
+    fmt.Printf("Mount dir --> %+v\n", mountdir);
+    fmt.Printf("Cache dir--> %+v\n", cachedir);
 
 
 		buf, err := imageSource.GetImage(req)
