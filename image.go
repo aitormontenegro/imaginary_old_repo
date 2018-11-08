@@ -101,10 +101,10 @@ func Resize(buf []byte, o ImageOptions) (Image, error) {
 
 func Fit(buf []byte, o ImageOptions) (Image, error) {
 
-
     if o.Width == 0 || o.Height == 0 {
         return Image{}, NewError("Missing required params: height, width", BadRequest)
     }
+    fmt.Printf("1. %+v\n",o);
 
     dims, err := bimg.Size(buf)
     if err != nil {
@@ -146,8 +146,6 @@ func AddWatermarkImage (o ImageOptions, buf2 []byte, opts bimg.Options)(Image, e
     if o.CustomWatermark != "" {
         swapimage, swaperr :=  Process(buf2, opts)
         if swaperr != nil {
-    fmt.Printf("1. %+v\n",o);
-
             return Image{}, swaperr
         }
         o.Image = o.CustomWatermark;
