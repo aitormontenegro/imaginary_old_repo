@@ -108,8 +108,6 @@ func Fit(buf []byte, o ImageOptions) (Image, error) {
     dims, err := bimg.Size(buf)
     if err != nil {
         return Image{}, err
-    }else{
-        fmt.Printf("1. %+v\n",o);
     }
 
     // if original < fit
@@ -135,6 +133,8 @@ func Fit(buf []byte, o ImageOptions) (Image, error) {
 
     opts := BimgOptions(o)
     opts.Embed = true
+
+     fmt.Printf("1. %+v\n",o);
 
     return AddWatermarkImage(o, buf, opts)
 }
