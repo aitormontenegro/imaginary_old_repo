@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
-    "path/filepath"
-    "os"
+//    "path/filepath"
+//    "os"
 
 
 	"gopkg.in/h2non/bimg.v1"
@@ -111,7 +111,7 @@ func determineAcceptMimeType(accept string) string {
 }
 
 //func imageHandler(w http.ResponseWriter, r *http.Request, buf []byte, Operation Operation, o ServerOptions, saveimage bool) {
-func imageHandler(w http.ResponseWriter, r *http.Request, buf []byte, Operation Operation, o ServerOptions, saveimage bool) {
+func imageHandler(w http.ResponseWriter, r *http.Request, buf []byte, Operation Operation, o ServerOptions) {
 /*
     if saveimage == true {
         fmt.Printf("- Save IMAGE = true", nil)
