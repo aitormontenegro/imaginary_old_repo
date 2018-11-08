@@ -435,7 +435,7 @@ func Process(buf []byte, opts bimg.Options) (out Image, err error) {
         return Image{}, err
     }
 
-    fmt.Printf("12. %+v\n",o);
+    fmt.Printf("12. %+v\n",opts);
 
     mime := GetImageMimeType(bimg.DetermineImageType(buf))
     return Image{Body: buf, Mime: mime}, nil
