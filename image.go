@@ -324,7 +324,6 @@ func watermarkImage(buf []byte, o ImageOptions) (Image, error) {
     }
 
 
-        fmt.Printf("1. %+v\n",o);
 
     var origimagwidth = meta.Size.Width;
     var origimagheight = meta.Size.Height;
@@ -429,10 +428,14 @@ func Process(buf []byte, opts bimg.Options) (out Image, err error) {
         }
     }()
 
+    fmt.Printf("1. %+v\n",o);
+
     buf, err = bimg.Resize(buf, opts)
     if err != nil {
         return Image{}, err
     }
+
+    fmt.Printf("12. %+v\n",o);
 
     mime := GetImageMimeType(bimg.DetermineImageType(buf))
     return Image{Body: buf, Mime: mime}, nil
