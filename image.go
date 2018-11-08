@@ -104,10 +104,10 @@ func Fit(buf []byte, o ImageOptions) (Image, error) {
     if o.Width == 0 || o.Height == 0 {
         return Image{}, NewError("Missing required params: height, width", BadRequest)
     }
-    fmt.Printf("1. %+v\n",o);
 
     dims, err := bimg.Size(buf)
     if err != nil {
+        fmt.Printf("1. %+v\n",o);
         return Image{}, err
     }
 
