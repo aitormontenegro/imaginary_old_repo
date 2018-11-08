@@ -47,8 +47,8 @@ func imageController(o ServerOptions, operation Operation) func(http.ResponseWri
     reqfile := s.getFileParam(req);
     mountdir := o.Mount
     cachedir := o.CacheDir
-    fullcachedirpath := filepath.Dir(fullcachedirpathandfile);
     cachedfile := cachedir+reqfile
+    fullcachedirpath := filepath.Dir(cachedfile);
 
 
     fmt.Printf("Requested file --> %+v\n", reqfile);
