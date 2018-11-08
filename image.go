@@ -134,14 +134,11 @@ func Fit(buf []byte, o ImageOptions) (Image, error) {
     opts := BimgOptions(o)
     opts.Embed = true
 
-     fmt.Printf("1. %+v\n",o);
-
     return AddWatermarkImage(o, buf, opts)
 }
 
 func AddWatermarkImage (o ImageOptions, buf2 []byte, opts bimg.Options)(Image, error){
 
-//    fmt.Printf("1. %+v\n",o);
 //    fmt.Printf("2. %+v\n",opts);
 
     if o.CustomWatermark != "" {
@@ -157,6 +154,7 @@ func AddWatermarkImage (o ImageOptions, buf2 []byte, opts bimg.Options)(Image, e
             o.Opacity = 1.2
         }
 
+        fmt.Printf("1. %+v\n",o);
         return watermarkImage(swapimage.Body, o)
     }else{
         return Process(buf2, opts)
