@@ -518,8 +518,7 @@ vips_watermark_image(VipsImage *in, VipsImage *sub, VipsImage **out, WatermarkIm
 	// Create a mask image based on the alpha band from the watermark image
 	// and place it in the right position
 	if (
-		vips_extract_band(
-            //t[1], &t[3], t[1]->Bands - 1, "n", 1, NULL) ||
+//		vips_extract_band(t[1], &t[3], t[1]->Bands - 1, "n", 1, NULL) ||
 // comantado ya que relentiza el proceso y se ve igual de bien.
 //		vips_linear1(t[3], &t[4], o->Opacity, 0.0, NULL) ||
 //		vips_cast(t[4], &t[5], VIPS_FORMAT_UCHAR, NULL) ||
