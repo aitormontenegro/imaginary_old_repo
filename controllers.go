@@ -8,6 +8,7 @@ import (
 	"strconv"
 	"strings"
     "path/filepath"
+    "os"
 
 
 	"gopkg.in/h2non/bimg.v1"
