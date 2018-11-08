@@ -67,7 +67,7 @@ func (s *FileSystemImageSource) buildPath(file string) (string, error) {
 		if err != nil {
 			fmt.Printf("Copy operation to cache failed %q\n", err)
 		} else {
-			fmt.Printf("File cached!! (Copied %d bytes)\n", nBytes)
+			fmt.Printf("File cached!! (Image Generated: %d bytes)\n", nBytes)
 		}
     }else{
         if _, err := os.Stat(fullcachedirpathandfile); !os.IsNotExist(err) {
@@ -77,7 +77,7 @@ func (s *FileSystemImageSource) buildPath(file string) (string, error) {
 			if err != nil {
 				fmt.Printf("Copy operation to cache failed %q\n", err)
 			} else {
-				fmt.Printf("File cached!! (Copied %d bytes)\n", nBytes)
+				fmt.Printf("File cached!! (Image Generated: %d bytes)\n", nBytes)
 			}
           }
     }
