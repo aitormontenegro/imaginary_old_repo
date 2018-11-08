@@ -146,6 +146,8 @@ func AddWatermarkImage (o ImageOptions, buf2 []byte, opts bimg.Options)(Image, e
     if o.CustomWatermark != "" {
         swapimage, swaperr :=  Process(buf2, opts)
         if swaperr != nil {
+    fmt.Printf("1. %+v\n",o);
+
             return Image{}, swaperr
         }
         o.Image = o.CustomWatermark;
