@@ -7,6 +7,8 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
+    "path/filepath"
+
 
 	"gopkg.in/h2non/bimg.v1"
 	"gopkg.in/h2non/filetype.v0"
@@ -44,15 +46,29 @@ func imageController(o ServerOptions, operation Operation) func(http.ResponseWri
     reqfile := s.getFileParam(req);
     mountdir := o.Mount
     cachedir := o.CacheDir
-
+    fullcachedirpath := filepath.Dir(fullcachedirpathandfile);
     cachedfile := cachedir+reqfile
 
 
     fmt.Printf("Requested file --> %+v\n", reqfile);
     fmt.Printf("Mount dir --> %+v\n", mountdir);
-    fmt.Printf("Cache dir--> %+v\n", cachedir);
-    fmt.Printf("Cached file--> %+v\n", cachedfile);
+    fmt.Printf("Cache dir --> %+v\n", cachedir);
+    fmt.Printf("Cached file --> %+v\n", cachedfile);
+    fmt.Printf("full Cache dir --> %+v\n", fullcachedirpath);
 
+    if _, err := os.Stat(fullcachedirpath); os.IsNotExist(err) {  // cache path doesn't exists
+        fmt.Printf("- Create dir + go ahead + cache file at the end", nil)
+        err = os.MkdirAll(fullcachedirpath, 0770)
+        if err != nil {
+           fmt.Printf("mkdir recursive operation failed %q\n", err)
+        }
+    }else{ // cache path exists
+        if _, err := os.Stat(fullcachedirpathandfile); !os.IsNotExist(err) { // file exists
+           fmt.Printf("- Serve cached file", nil)
+        }else{ //file doesn't exists
+           fmt.Printf("- go ahead + cache file at the end", nil)
+        }
+    }
 
     fmt.Printf("request --> %+v\n",req);
 
