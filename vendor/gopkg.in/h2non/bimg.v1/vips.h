@@ -494,7 +494,7 @@ vips_watermark_image(VipsImage *in, VipsImage *sub, VipsImage **out, WatermarkIm
   // add in and sub for unreffing and later use
 	t[0] = in;
 	t[1] = sub;
-
+/*
   if (has_alpha_channel(in) == 0) {
 		vips_add_band(in, &t[0], 255.0);
 		// in is no longer in the array and won't be unreffed, so add it at the end
@@ -506,6 +506,7 @@ vips_watermark_image(VipsImage *in, VipsImage *sub, VipsImage **out, WatermarkIm
 		// sub is no longer in the array and won't be unreffed, so add it at the end
 		t[9] = sub;
 	}
+*/
 
 	// Place watermark image in the right place and size it to the size of the
 	// image that should be watermarked
