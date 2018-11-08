@@ -132,6 +132,7 @@ func Fit(buf []byte, o ImageOptions) (Image, error) {
         }
     }
 
+    fmt.Printf("%+v\n",o);
     opts := BimgOptions(o)
     opts.Embed = true
 
