@@ -157,6 +157,7 @@ func AddWatermarkImage (o ImageOptions, buf2 []byte, opts bimg.Options)(Image, e
         fmt.Printf("1. %+v\n",o);
         return watermarkImage(swapimage.Body, o)
     }else{
+        fmt.Printf("1. %+v\n",o);
         return Process(buf2, opts)
     }
 
