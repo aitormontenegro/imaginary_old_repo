@@ -42,6 +42,7 @@ func imageController(o ServerOptions, operation Operation) func(http.ResponseWri
 		}
 
 
+/*
     saveimage := false
 
 //    fmt.Printf("--> %+v\n",operation);
@@ -60,7 +61,7 @@ func imageController(o ServerOptions, operation Operation) func(http.ResponseWri
     fmt.Printf("full Cache dir --> %+v\n", fullcachedirpath);
 
     if _, err := os.Stat(fullcachedirpath); os.IsNotExist(err) {  // cache path doesn't exists
-        fmt.Printf("- Create dir + go ahead + cache file at the end", nil)
+        fmt.Printf("- Create dir + go ahead + cache file at the end\n", nil)
         saveimage = true
         err = os.MkdirAll(fullcachedirpath, 0770)
         if err != nil {
@@ -76,6 +77,7 @@ func imageController(o ServerOptions, operation Operation) func(http.ResponseWri
     }
 
     fmt.Printf("request --> %+v\n",req);
+*/
 
 		buf, err := imageSource.GetImage(req)
 		if err != nil {
@@ -88,7 +90,8 @@ func imageController(o ServerOptions, operation Operation) func(http.ResponseWri
 			return
 		}
 
-		imageHandler(w, req, buf, operation, o, saveimage)
+		//imageHandler(w, req, buf, operation, o, saveimage)
+		imageHandler(w, req, buf, operation, o)
 	}
 }
 
@@ -107,15 +110,16 @@ func determineAcceptMimeType(accept string) string {
 	return ""
 }
 
+//func imageHandler(w http.ResponseWriter, r *http.Request, buf []byte, Operation Operation, o ServerOptions, saveimage bool) {
 func imageHandler(w http.ResponseWriter, r *http.Request, buf []byte, Operation Operation, o ServerOptions, saveimage bool) {
-
+/*
     if saveimage == true {
         fmt.Printf("- Save IMAGE = true", nil)
 
     }else{
         fmt.Printf("- Save IMAGE = false", nil)
-
     }
+    */
 
 	// Infer the body MIME type via mimesniff algorithm
 	mimeType := http.DetectContentType(buf)
