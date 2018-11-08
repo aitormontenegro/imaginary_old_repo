@@ -39,6 +39,9 @@ func imageController(o ServerOptions, operation Operation) func(http.ResponseWri
 		}
 
     fmt.Printf("--> %+v\n",req);
+     test1 := s.getFileParam(req)
+
+    fmt.Printf("--> %+v\n",test1;
 
 		buf, err := imageSource.GetImage(req)
 		if err != nil {
