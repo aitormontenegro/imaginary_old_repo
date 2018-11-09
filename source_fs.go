@@ -128,5 +128,7 @@ func dofilecache(src, dst string) (int64, error) {
 
 }
 func defercache(src, dst string) () {
-		nBytes, err := dofilecache(src, dst)
+	nBytes, err := dofilecache(src, dst)
+	// if n Bytes = 0 or error, delete cach file
+
 }
