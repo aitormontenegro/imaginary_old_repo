@@ -39,6 +39,8 @@ func (s *FileSystemImageSource) GetImage(r *http.Request) ([]byte, error) {
 		return nil, err
 	}
 
+	fmt.Printf("--> %s\n",cach)
+
 	//TODO: forzar caso extremo que falle escritura + full disk
 	//TODO: cambiar la funciona para que haga un defer
 	//TODO: test de estres
