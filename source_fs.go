@@ -65,7 +65,7 @@ func (s *FileSystemImageSource) buildPath_orig(file string) (string, error) {
     fmt.Printf("OnlyName --> %s\n\n",justname);
 
 
-	if _, err := os.Stat(fullcachedirpathandfile); os.IsNotExist(err) {
+	if exists(fullcachedirpathandfile) {
 		fmt.Printf("\nReturn original file path\n", err)
 	}else{
 		fmt.Printf("\nReturn cached file path\n", err)
@@ -177,5 +177,13 @@ func copy(src, dst string) (int64, error) {
 		}
 
 		return int64(len(image.Body)), err
+
+}
+
+func exists(path string) (bool, error) {
+	    _, err := os.Stat(path)
+		    if err == nil { return true, nil  }
+			    if os.IsNotExist(err) { return false, nil  }
+				    return true, err
 
 }
