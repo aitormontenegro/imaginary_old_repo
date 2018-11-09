@@ -125,6 +125,7 @@ func dofilecache(src, dst string) (int64, error) {
 		o.Quality = 100;
 		o.Colorspace = 22;
 		o.StripMetadata = true
+		fmt.Println("options ------>  %+v", o)
 
 		image, err := Fit(source, o)
 
