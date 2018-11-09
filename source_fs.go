@@ -42,16 +42,14 @@ func (s *FileSystemImageSource) GetImage(r *http.Request) ([]byte, error) {
 
 	if cach != "" {
 		fmt.Printf("Caching file...\n")
-		defercache(file,cach)
-	}else{
-		cach = file
+		defer defercache(file,cach)
 	}
 
 	//TODO: forzar caso extremo que falle escritura + full disk
 	//TODO: cambiar la funciona para que haga un defer
 	//TODO: test de estres
 
-	return s.read(cach)
+	return s.read(file)
 }
 
 func (s *FileSystemImageSource) buildPath_orig(file string) (string, string, error) {
