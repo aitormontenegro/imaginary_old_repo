@@ -44,7 +44,7 @@ func (s *FileSystemImageSource) GetImage(r *http.Request) ([]byte, error) {
 		fmt.Printf("Caching file...\n")
 		c := make(chan int64)
 		go defercache(file,cach, c)
-		fmt.Printf("nBytes %+v\n", c)
+		fmt.Printf("nBytes %v\n", c)
 	}
 
 	//TODO: forzar caso extremo que falle escritura + full disk
