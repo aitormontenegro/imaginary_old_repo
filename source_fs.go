@@ -143,6 +143,12 @@ func defercache(src, dst string, c chan int64) () {
 	nBytes, err := dofilecache(src, dst)
 	if err != nil || nBytes == 0 {
 		fmt.Printf("Copy operation to cache failed %q\n", err)
+		err := os.Remove(dst)
+		if err != nil {
+			  fmt.Println(err)
+			    return
+		}
+
 		//delete file
 	} else {
 		fmt.Printf("File cached!! (Image Generated: %d bytes, path: %s)\n", nBytes, dst)
