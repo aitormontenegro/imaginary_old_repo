@@ -99,9 +99,9 @@ func dofilecache(src, dst string) (int64, error) {
 
 	 if _, err := os.Stat(fullcachedirpath); os.IsNotExist(err) {
 		err = os.MkdirAll(fullcachedirpath, 0770)
-	}
-	if err != nil {
-		fmt.Printf("mkdir recursive operation failed %q\n", err)
+		if err != nil {
+			fmt.Printf("mkdir recursive operation failed %q\n", err)
+		}
 	}
 
         sourceFileStat, err := os.Stat(src)
