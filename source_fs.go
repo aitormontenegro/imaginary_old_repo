@@ -62,6 +62,7 @@ func (s *FileSystemImageSource) buildPath_orig(file string) (string, error) {
     fmt.Printf("Full cache dir --> %s\n\n",fullcachedirpath);
     fmt.Printf("Full Cache Dir and file --> %s\n\n",fullcachedirpathandfile);
     fmt.Printf("OnlyName --> %s\n\n",justname);
+    fmt.Printf("File --> %s\n\n",file);
 
 		file = path.Clean(path.Join(s.Config.MountPath, file))
 		if strings.HasPrefix(file, s.Config.MountPath) == false {
