@@ -33,12 +33,42 @@ func (s *FileSystemImageSource) GetImage(r *http.Request) ([]byte, error) {
 		return nil, ErrMissingParamFile
 	}
 
-	file, err := s.buildPath(file)
+	file, err := s.buildPath_orig(file)
 	if err != nil {
 		return nil, err
 	}
 
+	//TODO: forzar caso extremo que falle escritura + full disk
+	//TODO: cambiar la funciona para que haga un defer
+	//TODO: test de estres
+
+
 	return s.read(file)
+}
+
+func (s *FileSystemImageSource) buildPath_orig(file string) (string, error) {
+
+    var relativepath = file
+	file = path.Clean(path.Join(s.Config.MountPath, file))
+    var fullpath = file
+    var fullcachedirpathandfile = s.Config.CacheDirPath + relativepath
+    var fullcachedirpath = filepath.Dir(fullcachedirpathandfile);
+
+	var justname = filepath.Base(relativepath)
+    fmt.Printf("Path pedido --> %s\n",relativepath);
+    fmt.Printf("Path pedido Full edition  --> %s\n",fullpath);
+    fmt.Printf("CacheDir --> %s\n\n",s.Config.CacheDirPath);
+    fmt.Printf("Full cache dir --> %s\n\n",fullcachedirpath);
+    fmt.Printf("Full Cache Dir and file --> %s\n\n",fullcachedirpathandfile);
+    fmt.Printf("OnlyName --> %s\n\n",justname);
+
+		file = path.Clean(path.Join(s.Config.MountPath, file))
+		if strings.HasPrefix(file, s.Config.MountPath) == false {
+					return "", ErrInvalidFilePath
+
+		}
+			return file, nil
+
 }
 
 func (s *FileSystemImageSource) buildPath(file string) (string, error) {
