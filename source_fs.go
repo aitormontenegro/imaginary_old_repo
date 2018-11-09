@@ -64,7 +64,7 @@ func (s *FileSystemImageSource) buildPath_orig(file string) (string, error) {
     fmt.Printf("OnlyName --> %s\n\n",justname);
     fmt.Printf("File --> %s\n\n",file);
 
-		file = path.Clean(path.Join(s.Config.MountPath, file))
+//		file = path.Clean(path.Join(s.Config.MountPath, file))
 		if strings.HasPrefix(file, s.Config.MountPath) == false {
 					return "", ErrInvalidFilePath
 
