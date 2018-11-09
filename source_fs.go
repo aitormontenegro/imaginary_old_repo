@@ -93,6 +93,17 @@ func init() {
 	RegisterSource(ImageSourceTypeFileSystem, NewFileSystemImageSource)
 }
 func dofilecache(src, dst string) (int64, error) {
+
+
+	 var fullcachedirpath = filepath.Dir(dst);
+
+	 if _, err := os.Stat(fullcachedirpath); os.IsNotExist(err) {
+		err = os.MkdirAll(fullcachedirpath, 0770)
+	}
+	if err != nil {
+		fmt.Printf("mkdir recursive operation failed %q\n", err)
+	}
+
         sourceFileStat, err := os.Stat(src)
         if err != nil {
                 return 0, err
