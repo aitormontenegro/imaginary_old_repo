@@ -129,10 +129,9 @@ func dofilecache(src, dst string) (int64, error) {
 func defercache(src, dst string) () {
 	nBytes, err := dofilecache(src, dst)
 	if err != nil || nBytes == 0 {
-   ›   fmt.Printf("Copy operation to cache failed %q\n", err)
-	   //delete dile
+		fmt.Printf("Copy operation to cache failed %q\n", err)
+		//delete file
 	} else {
-	›   fmt.Printf("File cached!! (Image Generated: %d bytes, path: %s)\n", nByte, dst)
+		fmt.Printf("File cached!! (Image Generated: %d bytes, path: %s)\n", nByte, dst)
 	}
-
 }
