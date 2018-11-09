@@ -140,14 +140,6 @@ func dofilecache(src, dst string) (int64, error) {
 
 }
 func defercache(src, dst string, c chan int64) () {
-
-
-	var stat syscall.Statfs_t
-	wd, err := dst
-	syscall.Statfs(wd, &stat)
-	// Available blocks * size per block = available space in bytes
-	fmt.Println(stat.Bavail * uint64(stat.Bsize))
-
 	nBytes, err := dofilecache(src, dst)
 	if err != nil || nBytes == 0 {
 		fmt.Printf("Copy operation to cache failed %q\n", err)
