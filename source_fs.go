@@ -39,7 +39,10 @@ func (s *FileSystemImageSource) GetImage(r *http.Request) ([]byte, error) {
 		return nil, err
 	}
 
-	fmt.Printf("--> %s\n",cach)
+	if cach != "" {
+		fmt.Printf("Caching file...\n")
+		defer nBytes, err := dofilecache(file, cach)
+	}
 
 	//TODO: forzar caso extremo que falle escritura + full disk
 	//TODO: cambiar la funciona para que haga un defer
@@ -75,55 +78,6 @@ func (s *FileSystemImageSource) buildPath_orig(file string) (string, string, err
 
 }
 
-func (s *FileSystemImageSource) buildPath(file string) (string, error) {
-    var relativepath = file
-	file = path.Clean(path.Join(s.Config.MountPath, file))
-    var fullpath = file
-    var fullcachedirpathandfile = s.Config.CacheDirPath + relativepath
-    var fullcachedirpath = filepath.Dir(fullcachedirpathandfile);
-
-/*
-	var justname = filepath.Base(relativepath)
-    fmt.Printf("Path pedido --> %s\n",relativepath);
-    fmt.Printf("Path pedido Full edition  --> %s\n",fullpath);
-    fmt.Printf("CacheDir --> %s\n\n",s.Config.CacheDirPath);
-    fmt.Printf("Full cache dir --> %s\n\n",fullcachedirpath);
-    fmt.Printf("Full Cache Dir and file --> %s\n\n",fullcachedirpathandfile);
-    fmt.Printf("OnlyName --> %s\n\n",justname);
-*/
-
-    if _, err := os.Stat(fullcachedirpath); os.IsNotExist(err) {
-        err = os.MkdirAll(fullcachedirpath, 0770)
-		if err != nil {
-			fmt.Printf("mkdir recursive operation failed %q\n", err)
-		}
-		nBytes, err := copy(fullpath, fullcachedirpathandfile)
-		if err != nil {
-			fmt.Printf("Copy operation to cache failed %q\n", err)
-		} else {
-			fmt.Printf("File cached!! (Image Generated: %d bytes)\n", nBytes)
-		}
-    }else{
-        if _, err := os.Stat(fullcachedirpathandfile); !os.IsNotExist(err) {
-			fmt.Printf("Serving cached file\n", err)
-          }else{
-			nBytes, err := copy(fullpath, fullcachedirpathandfile)
-			if err != nil {
-				fmt.Printf("Copy operation to cache failed %q\n", err)
-			} else {
-				fmt.Printf("File cached!! (Image Generated: %d bytes)\n", nBytes)
-			}
-          }
-    }
-
-    file = fullcachedirpathandfile
-/*	if strings.HasPrefix(file, s.Config.MountPath) == false {
-		return "", ErrInvalidFilePath
-	}
-	*/
-	return file, nil
-}
-
 func (s *FileSystemImageSource) read(file string) ([]byte, error) {
 	buf, err := ioutil.ReadFile(file)
 	if err != nil {
@@ -139,7 +93,7 @@ func (s *FileSystemImageSource) getFileParam(r *http.Request) string {
 func init() {
 	RegisterSource(ImageSourceTypeFileSystem, NewFileSystemImageSource)
 }
-func copy(src, dst string) (int64, error) {
+func dofilecache(src, dst string) (int64, error) {
         sourceFileStat, err := os.Stat(src)
         if err != nil {
                 return 0, err
