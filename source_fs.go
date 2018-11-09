@@ -66,12 +66,11 @@ func (s *FileSystemImageSource) buildPath_orig(file string) (string, error) {
 
 
 	if exists(fullcachedirpathandfile) {
-		fmt.Printf("\nReturn original file path\n", err)
+		fmt.Printf("\nReturn original file path\n", nil)
 	}else{
-		fmt.Printf("\nReturn cached file path\n", err)
+		fmt.Printf("\nReturn cached file path\n", nil)
 		file = fullcachedirpathandfile
 	}
-
 
     fmt.Printf("Return file --> %s\n\n", file);
 		if strings.HasPrefix(file, s.Config.MountPath) == false && strings.HasPrefix(file,s.Config.CacheDirPath) == false {
