@@ -54,17 +54,25 @@ func (s *FileSystemImageSource) buildPath_orig(file string) (string, error) {
     var fullpath = file
     var fullcachedirpathandfile = s.Config.CacheDirPath + relativepath
     var fullcachedirpath = filepath.Dir(fullcachedirpathandfile);
-
 	var justname = filepath.Base(relativepath)
+
+
     fmt.Printf("Path pedido --> %s\n",relativepath);
     fmt.Printf("Path pedido Full edition  --> %s\n",fullpath);
     fmt.Printf("CacheDir --> %s\n\n",s.Config.CacheDirPath);
     fmt.Printf("Full cache dir --> %s\n\n",fullcachedirpath);
     fmt.Printf("Full Cache Dir and file --> %s\n\n",fullcachedirpathandfile);
     fmt.Printf("OnlyName --> %s\n\n",justname);
-    fmt.Printf("File --> %s\n\n",file);
 
-//		file = path.Clean(path.Join(s.Config.MountPath, file))
+
+	if _, err := os.Stat(fullcachedirpathandfile); !os.IsNotExist(err) {
+		fmt.Printf("Return cached file path\n", err)
+		file = path.Clean(path.Join(s.Config.MountPath, fullcachedirpathandfile))
+	}else{
+		fmt.Printf("Return original file path\n", err)
+	}
+
+    fmtePrintf("Return file --> %s\n\n",file);
 		if strings.HasPrefix(file, s.Config.MountPath) == false {
 					return "", ErrInvalidFilePath
 
