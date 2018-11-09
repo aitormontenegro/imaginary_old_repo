@@ -6,7 +6,6 @@ import (
 	"net/http"
 	"path"
     "fmt"
-    "path/filepath"
 	"strings"
 
 //	"gopkg.in/h2non/bimg.v1"
