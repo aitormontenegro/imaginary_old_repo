@@ -7,6 +7,7 @@ import (
 	"path"
     "fmt"
 	"strings"
+	"path/filepath"
 
 //	"gopkg.in/h2non/bimg.v1"
 //	"gopkg.in/h2non/filetype.v0"
@@ -93,7 +94,6 @@ func init() {
 	RegisterSource(ImageSourceTypeFileSystem, NewFileSystemImageSource)
 }
 func dofilecache(src, dst string) (int64, error) {
-
 
 	 var fullcachedirpath = filepath.Dir(dst);
 
