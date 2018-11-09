@@ -48,7 +48,9 @@ func (s *FileSystemImageSource) GetImage(r *http.Request) ([]byte, error) {
 }
 
 func (s *FileSystemImageSource) buildPath_orig(file string) (string, string, error) {
-	// first --> return original file or cached
+	// first --> return original file or cached file
+	// second -> nil if cached file, string if file has to be cached
+	// third --> error
 
     var fullcachedirpathandfile = s.Config.CacheDirPath + file
 	file = path.Clean(path.Join(s.Config.MountPath, file))
@@ -62,9 +64,9 @@ func (s *FileSystemImageSource) buildPath_orig(file string) (string, string, err
 
     fmt.Printf("\nReturn file --> %s\n", file);
 		if strings.HasPrefix(file, s.Config.MountPath) == false && strings.HasPrefix(file,s.Config.CacheDirPath) == false {
-					return "", ErrInvalidFilePath
+					return "","", ErrInvalidFilePath
 		}
-			return file, nil, nil
+			return file, "", nil
 
 }
 
