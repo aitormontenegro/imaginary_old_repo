@@ -45,7 +45,6 @@ func (s *FileSystemImageSource) GetImage(r *http.Request) ([]byte, error) {
 	//TODO: cambiar la funciona para que haga un defer
 	//TODO: test de estres
 
-
 	return s.read(file)
 }
 
@@ -56,7 +55,8 @@ func (s *FileSystemImageSource) buildPath_orig(file string) (string, string, err
 
     var fullcachedirpathandfile = s.Config.CacheDirPath + file
 	file = path.Clean(path.Join(s.Config.MountPath, file))
-	var cach string := ""
+
+	cach := ""
 
 	if _, err := os.Stat(fullcachedirpathandfile); os.IsNotExist(err) {
 		fmt.Printf("Return original file path\n")
