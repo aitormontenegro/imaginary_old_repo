@@ -38,6 +38,8 @@ func (s *FileSystemImageSource) GetImage(r *http.Request) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
+	fmt.Printf("cach = %s\n",cach)
+
 /*
 	if cach != "" {
 		fmt.Printf("Caching file...\n")
