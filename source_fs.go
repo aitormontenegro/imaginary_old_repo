@@ -38,12 +38,12 @@ func (s *FileSystemImageSource) GetImage(r *http.Request) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-
+/*
 	if cach != "" {
 		fmt.Printf("Caching file...\n")
 		defer defercache(file,cach)
 	}
-
+*/
 	//TODO: forzar caso extremo que falle escritura + full disk
 	//TODO: cambiar la funciona para que haga un defer
 	//TODO: test de estres
