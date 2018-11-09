@@ -49,21 +49,9 @@ func (s *FileSystemImageSource) GetImage(r *http.Request) ([]byte, error) {
 
 func (s *FileSystemImageSource) buildPath_orig(file string) (string, error) {
 
-    var relativepath = file
+    var fullcachedirpathandfile = s.Config.CacheDirPath + file
 	file = path.Clean(path.Join(s.Config.MountPath, file))
-    var fullcachedirpathandfile = s.Config.CacheDirPath + relativepath
-    var fullpath = file
     var fullcachedirpath = filepath.Dir(fullcachedirpathandfile);
-	var justname = filepath.Base(relativepath)
-
-
-    fmt.Printf("Path pedido --> %s\n",relativepath);
-    fmt.Printf("Path pedido Full edition  --> %s\n",fullpath);
-    fmt.Printf("CacheDir --> %s\n\n",s.Config.CacheDirPath);
-    fmt.Printf("Full cache dir --> %s\n\n",fullcachedirpath);
-    fmt.Printf("Full Cache Dir and file --> %s\n\n",fullcachedirpathandfile);
-    fmt.Printf("OnlyName --> %s\n\n",justname);
-
 
 	if _, err := os.Stat(fullcachedirpathandfile); os.IsNotExist(err) {
 		fmt.Printf("Return original file path\n")
@@ -71,7 +59,6 @@ func (s *FileSystemImageSource) buildPath_orig(file string) (string, error) {
 		fmt.Printf("Return cached file path\n")
 		file = fullcachedirpathandfile
 	}
-
 
     fmt.Printf("\nReturn file --> %s\n", file);
 		if strings.HasPrefix(file, s.Config.MountPath) == false && strings.HasPrefix(file,s.Config.CacheDirPath) == false {
