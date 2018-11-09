@@ -50,6 +50,7 @@ func (s *FileSystemImageSource) GetImage(r *http.Request) ([]byte, error) {
 	//TODO: cambiar la funciona para que haga un defer
 	//TODO: test de estres
 
+	fmt.Printf("file = %s\n",file)
 	return s.read(file)
 }
 
