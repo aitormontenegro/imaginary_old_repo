@@ -108,6 +108,10 @@ func resizer(buf []byte, o Options) ([]byte, error) {
 		}
 	}
 
+    test1, test2 := saveImage(image, o)
+    fmt.Printf("E1. size = %d \n", len(test1))
+    fmt.Printf("E2. size = %+v \n", test2)
+
 	// Add watermark, if necessary
 	image, err = watermarkImageWithText(image, o.Watermark)
 	if err != nil {
@@ -126,9 +130,6 @@ func resizer(buf []byte, o Options) ([]byte, error) {
 		return nil, err
 	}
 
-    test1, test2 := saveImage(image, o)
-    fmt.Printf("E1. size = %d \n", len(test1))
-    fmt.Printf("E2. size = %+v \n", test2)
 
 	return saveImage(image, o)
 }
