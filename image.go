@@ -449,7 +449,6 @@ func Process(buf []byte, opts bimg.Options) (out Image, err error) {
             out = Image{}
         }
     }()
-
     buforig := buf
 
     fmt.Printf("6.0 size = %d \n", len(buf))
