@@ -126,7 +126,7 @@ func resizer(buf []byte, o Options) ([]byte, error) {
 		return nil, err
 	}
 
-    //fmt.Printf("D. size = %+v \n", image)
+    fmt.Printf("D. size = %d \n", len(image.Body))
 
 	return saveImage(image, o)
 }
@@ -424,8 +424,6 @@ func shrinkImage(image *C.VipsImage, o Options, residual float64, shrink int) (*
 func shrinkOnLoad(buf []byte, input *C.VipsImage, imageType ImageType, factor float64, shrink int) (*C.VipsImage, float64, error) {
 	var image *C.VipsImage
 	var err error
-
-    fmt.Printf("H1. size = %d \n", len(buf))
 
 	// Reload input using shrink-on-load
 	if imageType == JPEG && shrink >= 2 {
