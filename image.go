@@ -164,6 +164,7 @@ func AddWatermarkImage (o ImageOptions, buf2 []byte, opts bimg.Options)(Image, e
         fmt.Printf("3. Add watermark quality = %d and size = %d \n", o.Quality,len(buf2))
         fmt.Printf("3.5 Add watermark quality = %d and size = %d \n", o.Quality,len(swapimage.Body))
 
+        //return watermarkImage(swapimage.Body, o)
         return watermarkImage(swapimage.Body, o)
     }else{
         fmt.Printf("3. bis Add watermark quality = %d and size = %d \n", o.Quality,len(buf2))
@@ -314,16 +315,20 @@ func Watermark(buf []byte, o ImageOptions) (Image, error) {
 
 func watermarkImage(buf []byte, o ImageOptions) (Image, error) {
 
+    fmt.Printf("4.0 size = %d \n", len(buf))
+
     aitorfile, err := os.Open(o.Image)
         if err != nil {
             fmt.Fprintf(os.Stderr, "%s\n", err)
             return Image{}, NewError("Invalid watermark image.", BadRequest)
         }
+    fmt.Printf("4.1 size = %d %s \n", len(aitorfile), o.Image)
 
     imageBuf, _ := ioutil.ReadAll(aitorfile)
     if len(imageBuf) == 0 {
         return Image{}, NewError("Invalid watermark image. Buffer = 0", BadRequest)
     }
+    fmt.Printf("4.2 size = %d \n", len(imageBuf))
 
     meta, err := bimg.Metadata(buf)
     if err != nil {
@@ -334,8 +339,10 @@ func watermarkImage(buf []byte, o ImageOptions) (Image, error) {
         return Image{}, NewError("Cannot retrieve image metadata: %s"+err.Error(), BadRequest)
     }
 
+    fmt.Printf("4.3 size = %+v \n", meta)
+    fmt.Printf("4.4 size = %+v \n", metawatermark)
 
-    fmt.Printf("4. size = %d \n", len(buf))
+    fmt.Printf("4.5 size = %d \n", len(buf))
 
     var origimagwidth = meta.Size.Width;
     var origimagheight = meta.Size.Height;
