@@ -153,8 +153,6 @@ func AddWatermarkImage (o ImageOptions, buf2 []byte, opts bimg.Options)(Image, e
 
         fmt.Printf("3. Add watermark quality = %d\n", o.Quality)
 
-        o.Quality = 10
-
         if o.WatermarkOpacity != 0 {
             o.Opacity = o.WatermarkOpacity
         } else {
