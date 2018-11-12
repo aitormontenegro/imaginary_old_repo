@@ -402,7 +402,7 @@ func vipsSave(image *C.VipsImage, o vipsSaveOptions) ([]byte, error) {
 
 	tmpImage, err := vipsPreSave(image, &o)
 
-    fmt.Printf("G. size = %d \n", tmpImage)
+    fmt.Printf("G. size = %+v \n", tmpImage)
 
 	if err != nil {
 		return nil, err
