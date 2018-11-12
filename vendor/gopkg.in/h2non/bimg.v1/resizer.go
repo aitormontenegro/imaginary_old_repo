@@ -126,6 +126,7 @@ func resizer(buf []byte, o Options) ([]byte, error) {
 		return nil, err
 	}
 
+    fmt.Printf("D. size = %+v \n", image)
 
 	return saveImage(image, o)
 }
