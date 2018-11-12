@@ -175,7 +175,8 @@ func saveImage(image *C.VipsImage, o Options) ([]byte, error) {
 	}
 	// Finally get the resultant buffer
     test1, test2 := vipsSave(image, saveOptions)
-    fmt.Printf("D. size = %d \n", len(test1))
+    fmt.Printf("D1. size = %d \n", len(test1))
+    fmt.Printf("D2. size = %d \n", len(test2))
 
 
 	return vipsSave(image, saveOptions)
