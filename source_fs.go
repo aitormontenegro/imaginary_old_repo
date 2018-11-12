@@ -53,7 +53,8 @@ func (s *FileSystemImageSource) GetImage(r *http.Request) ([]byte, error) {
 	//TODO: test de estres
 
 	fmt.Printf("file = %s\n",file)
-	fmt.Printf("file size = %d\n",len(s.read(file)))
+	fmt.Printf("file size = %d %v\n",len(s.read(file)))
+
 	return s.read(file)
 }
 
