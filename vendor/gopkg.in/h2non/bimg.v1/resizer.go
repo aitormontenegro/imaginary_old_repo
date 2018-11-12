@@ -124,6 +124,8 @@ func resizer(buf []byte, o Options) ([]byte, error) {
 		return nil, err
 	}
 
+    fmt.Printf("C. size = %d \n", len(image))
+
 	return saveImage(image, o)
 }
 
@@ -137,7 +139,6 @@ func loadImage(buf []byte) (*C.VipsImage, ImageType, error) {
 		return nil, JPEG, err
 	}
 
-    fmt.Printf("C. size = %d \n", len(image))
 
 	return image, imageType, nil
 }
