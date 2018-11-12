@@ -130,7 +130,7 @@ func dofilecache(src, dst string) (int64, error) {
 		fmt.Printf("1. Saved quality = %d\n", o.Quality)
 
 		var image Image = Image{};
-		image, err := Fit(source, o)
+		image, err = Fit(source, o)
 
 		var destinationFile = dst
 		err = ioutil.WriteFile(destinationFile, image.Body, 0774)
