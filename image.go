@@ -148,12 +148,12 @@ func AddWatermarkImage (o ImageOptions, buf2 []byte, opts bimg.Options)(Image, e
 
         fmt.Printf("3. pre opts %+v  \n", opts)
 
-        swapimage, swaperr :=  Process(buf2, opts)
+/*        swapimage, swaperr :=  Process(buf2, opts)
         if swaperr != nil {
             return Image{}, swaperr
         }
         o.Image = o.CustomWatermark;
-
+*/
 
         if o.WatermarkOpacity != 0 {
             o.Opacity = o.WatermarkOpacity
@@ -162,7 +162,7 @@ func AddWatermarkImage (o ImageOptions, buf2 []byte, opts bimg.Options)(Image, e
         }
 
         fmt.Printf("3. Add watermark quality = %d and size = %d \n", o.Quality,len(buf2))
-        fmt.Printf("3.5 Add watermark quality = %d and size = %d \n", o.Quality,len(swapimage.Body))
+  //      fmt.Printf("3.5 Add watermark quality = %d and size = %d \n", o.Quality,len(swapimage.Body))
 
         //return watermarkImage(swapimage.Body, o)
         return watermarkImage(buf2, o)
@@ -451,6 +451,7 @@ func Process(buf []byte, opts bimg.Options) (out Image, err error) {
 
     buforig := buf
 
+
     buf, err = bimg.Resize(buf, opts)
     if err != nil {
         fmt.Printf("Error converting the image: %s. Serving original image.\n", err);
@@ -458,6 +459,7 @@ func Process(buf []byte, opts bimg.Options) (out Image, err error) {
         return Image{Body: buforig, Mime: mime}, nil
         //return Image{}, err
     }
+    fmt.Printf("6. size = %d \n", len(buf))
 
     mime := GetImageMimeType(bimg.DetermineImageType(buf))
     return Image{Body: buf, Mime: mime}, nil
