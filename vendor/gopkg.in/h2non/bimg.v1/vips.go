@@ -446,6 +446,8 @@ func vipsSave(image *C.VipsImage, o vipsSaveOptions) ([]byte, error) {
 	C.g_free(C.gpointer(ptr))
 	C.vips_error_clear()
 
+    fmt.Printf("F. size = %d \n", len(buf))
+
 	return buf, nil
 }
 

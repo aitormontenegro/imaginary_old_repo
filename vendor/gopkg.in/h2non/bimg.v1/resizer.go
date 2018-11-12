@@ -174,7 +174,6 @@ func saveImage(image *C.VipsImage, o Options) ([]byte, error) {
 		Lossless:       o.Lossless,
 	}
 	// Finally get the resultant buffer
-    fmt.Printf("E. size = %+v %+v \n", len(vipsSave(image, saveOptions)))
 	return vipsSave(image, saveOptions)
 }
 
