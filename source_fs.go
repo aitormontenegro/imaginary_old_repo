@@ -77,6 +77,7 @@ func (s *FileSystemImageSource) buildPath_orig(file string) (string, string, err
 	}
 
     fmt.Printf("\nReturn file --> %s\n", file);
+    fmt.Printf("\nReturn file --> %+v\n", s);
 		if strings.HasPrefix(file, s.Config.MountPath) == false && strings.HasPrefix(file,s.Config.CacheDirPath) == false {
 			return "","", ErrInvalidFilePath
 		}
