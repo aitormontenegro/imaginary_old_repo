@@ -2,9 +2,11 @@
 
 package bimg
 
+/*
 import (
 	"runtime"
 )
+*/
 
 // Resize is used to transform a given image as byte buffer
 // with the passed options.
