@@ -361,7 +361,6 @@ func vipsFlattenBackground(image *C.VipsImage, background Color) (*C.VipsImage, 
 }
 
 func vipsPreSave(image *C.VipsImage, o *vipsSaveOptions) (*C.VipsImage, error) {
-
 	var outImage *C.VipsImage
 	// Remove ICC profile metadata
 	if o.NoProfile {
@@ -402,13 +401,6 @@ func vipsSave(image *C.VipsImage, o vipsSaveOptions) ([]byte, error) {
 	defer C.g_object_unref(C.gpointer(image))
 
 	tmpImage, err := vipsPreSave(image, &o)
-
-     var o1 Options;
-
-     test1, test2 := saveImage(image, o1)
-    fmt.Printf("X1 ----> size = %d \n", len(test1))
-    fmt.Printf("X2 ----> size = %+v \n", test2)
-
 
 	if err != nil {
 		return nil, err
