@@ -38,12 +38,15 @@ func (s *FileSystemImageSource) GetImage(r *http.Request) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-//	fmt.Printf("cach = %s\n",cach)
+
+	 fmt.Printf("cach = %s\n",len(file))
+
+	fmt.Printf("cach = %s\n",cach)
 
 	if cach != "" {
 //		fmt.Printf("Caching file...\n")
 		c := make(chan int64)
-		go defercache(file,cach, c)
+		go defercache(file,cach,c)
 	}
 
 	//TODO: forzar caso extremo que falle escritura + full disk
@@ -65,14 +68,14 @@ func (s *FileSystemImageSource) buildPath_orig(file string) (string, string, err
 	cach := ""
 
 	if _, err := os.Stat(fullcachedirpathandfile); os.IsNotExist(err) {
-		fmt.Printf("Return original file path\n")
+//		fmt.Printf("Return original file path\n")
 		cach = fullcachedirpathandfile
 	}else{
-		fmt.Printf("Return cached file path\n")
+//		fmt.Printf("Return cached file path\n")
 		file = fullcachedirpathandfile
 	}
 
-//    fmt.Printf("\nReturn file --> %s\n", file);
+    fmt.Printf("\nReturn file --> %s\n", file);
 		if strings.HasPrefix(file, s.Config.MountPath) == false && strings.HasPrefix(file,s.Config.CacheDirPath) == false {
 			return "","", ErrInvalidFilePath
 		}
@@ -129,8 +132,7 @@ func dofilecache(src, dst string) (int64, error) {
 
 		fmt.Printf("1. Saved quality = %d\n", o.Quality)
 
-		var image Image = Image{};
-		image, err = Fit(source, o)
+		image, err := Fit(source, o)
 
 		var destinationFile = dst
 		err = ioutil.WriteFile(destinationFile, image.Body, 0774)
