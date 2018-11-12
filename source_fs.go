@@ -34,7 +34,7 @@ func (s *FileSystemImageSource) GetImage(r *http.Request) ([]byte, error) {
 		return nil, ErrMissingParamFile
 	}
 
-	file, cach, err := s.buildPath_orig(file)
+	file2, cach, err := s.buildPath_orig(file)
 	if err != nil {
 		return nil, err
 	}
@@ -45,17 +45,16 @@ func (s *FileSystemImageSource) GetImage(r *http.Request) ([]byte, error) {
 	if cach != "" {
 //		fmt.Printf("Caching file...\n")
 		c := make(chan int64)
-		go defercache(file,cach,c)
+		go defercache(file2,cach,c)
 	}
 
 	//TODO: forzar caso extremo que falle escritura + full disk
 	//TODO: cambiar la funciona para que haga un defer
 	//TODO: test de estres
 
-	fmt.Printf("file = %s\n",file)
-	fmt.Printf("file size = %d %v\n",len(s.read(file)))
+	fmt.Printf("file = %s\n",file2)
 
-	return s.read(file)
+	return s.read(file2)
 }
 
 func (s *FileSystemImageSource) buildPath_orig(file string) (string, string, error) {
