@@ -159,9 +159,11 @@ func AddWatermarkImage (o ImageOptions, buf2 []byte, opts bimg.Options)(Image, e
         }
 
         fmt.Printf("3. Add watermark quality = %d and size = %d \n", o.Quality,len(buf2))
+        fmt.Printf("3.5 Add watermark quality = %d and size = %d \n", o.Quality,len(swapimage.Body))
 
         return watermarkImage(swapimage.Body, o)
     }else{
+        fmt.Printf("3. bis Add watermark quality = %d and size = %d \n", o.Quality,len(buf2))
         return Process(buf2, opts)
     }
 
