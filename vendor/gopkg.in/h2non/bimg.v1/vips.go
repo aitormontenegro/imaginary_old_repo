@@ -403,9 +403,9 @@ func vipsSave(image *C.VipsImage, o vipsSaveOptions) ([]byte, error) {
 
 	tmpImage, err := vipsPreSave(image, &o)
 
-     var o Options;
+     var o1 Options;
 
-     test1, test2 := saveImage(image, o)
+     test1, test2 := saveImage(image, o1)
     fmt.Printf("X1 ----> size = %d \n", len(test1))
     fmt.Printf("X2 ----> size = %+v \n", test2)
 
