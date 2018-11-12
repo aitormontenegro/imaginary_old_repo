@@ -330,7 +330,7 @@ func watermarkImage(buf []byte, o ImageOptions) (Image, error) {
     }
 
 
-    fmt.Printf("4. size = %d \n", o.Quality,len(buf))
+    fmt.Printf("4. size = %d \n", len(buf))
 
     var origimagwidth = meta.Size.Width;
     var origimagheight = meta.Size.Height;
@@ -361,7 +361,7 @@ func watermarkImage(buf []byte, o ImageOptions) (Image, error) {
     opts.WatermarkImage.Opacity = o.Opacity;
     opts.WatermarkImage.Gravity = 1;
 
-    fmt.Printf("5. size = %d \n", o.Quality,len(buf))
+    fmt.Printf("5. size = %d \n", len(buf))
 
     return Process(buf, opts)
 }
