@@ -152,8 +152,8 @@ func AddWatermarkImage (o ImageOptions, buf2 []byte, opts bimg.Options)(Image, e
         if swaperr != nil {
             return Image{}, swaperr
         }
-        o.Image = o.CustomWatermark;
 */
+        o.Image = o.CustomWatermark;
 
         if o.WatermarkOpacity != 0 {
             o.Opacity = o.WatermarkOpacity
