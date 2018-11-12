@@ -39,7 +39,7 @@ func (s *FileSystemImageSource) GetImage(r *http.Request) ([]byte, error) {
 		return nil, err
 	}
 
-	 fmt.Printf("cach = %s\n",len(file))
+	 fmt.Printf("cach = %d\n",len(file))
 
 	fmt.Printf("cach = %s\n",cach)
 
