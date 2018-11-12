@@ -34,6 +34,9 @@ func (s *FileSystemImageSource) GetImage(r *http.Request) ([]byte, error) {
 		return nil, ErrMissingParamFile
 	}
 
+
+	fmt.Printf("file ====> %s\n",file)
+
 	file2, cach, err := s.buildPath_orig(file)
 	if err != nil {
 		return nil, err
