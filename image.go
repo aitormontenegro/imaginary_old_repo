@@ -451,6 +451,8 @@ func Process(buf []byte, opts bimg.Options) (out Image, err error) {
 
     buforig := buf
 
+    fmt.Printf("6.0 size = %d \n", len(buf))
+
 
     buf, err = bimg.Resize(buf, opts)
     if err != nil {
@@ -459,7 +461,7 @@ func Process(buf []byte, opts bimg.Options) (out Image, err error) {
         return Image{Body: buforig, Mime: mime}, nil
         //return Image{}, err
     }
-    fmt.Printf("6. size = %d \n", len(buf))
+    fmt.Printf("6.1 size = %d \n", len(buf))
 
     mime := GetImageMimeType(bimg.DetermineImageType(buf))
     return Image{Body: buf, Mime: mime}, nil
