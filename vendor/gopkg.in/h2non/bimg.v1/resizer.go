@@ -17,6 +17,8 @@ import (
 func resizer(buf []byte, o Options) ([]byte, error) {
 	defer C.vips_thread_shutdown()
 
+    fmt.Printf("B. size = %d \n", len(buf))
+
 	image, imageType, err := loadImage(buf)
 	if err != nil {
 		return nil, err
@@ -34,6 +36,7 @@ func resizer(buf []byte, o Options) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
+
 
 	// If JPEG image, retrieve the buffer
 	if rotated && imageType == JPEG && !o.NoAutoRotate {
@@ -133,6 +136,8 @@ func loadImage(buf []byte) (*C.VipsImage, ImageType, error) {
 	if err != nil {
 		return nil, JPEG, err
 	}
+
+    fmt.Printf("C. size = %d \n", len(image))
 
 	return image, imageType, nil
 }
