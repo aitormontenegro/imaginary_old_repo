@@ -39,7 +39,6 @@ func (s *FileSystemImageSource) GetImage(r *http.Request) ([]byte, error) {
 		return nil, err
 	}
 
-	 fmt.Printf("cach = %d\n",len(file))
 
 	fmt.Printf("cach = %s\n",cach)
 
@@ -54,6 +53,7 @@ func (s *FileSystemImageSource) GetImage(r *http.Request) ([]byte, error) {
 	//TODO: test de estres
 
 	fmt.Printf("file = %s\n",file)
+	fmt.Printf("file size = %d\n",len(s.read(file)))
 	return s.read(file)
 }
 
