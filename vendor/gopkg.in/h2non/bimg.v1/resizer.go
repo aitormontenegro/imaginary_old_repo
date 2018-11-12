@@ -17,8 +17,6 @@ import (
 func resizer(buf []byte, o Options) ([]byte, error) {
 	defer C.vips_thread_shutdown()
 
-    fmt.Printf("B. size = %d \n", len(buf))
-
 	image, imageType, err := loadImage(buf)
 	if err != nil {
 		return nil, err
@@ -45,8 +43,6 @@ func resizer(buf []byte, o Options) ([]byte, error) {
 			return nil, err
 		}
 	}
-
-    fmt.Printf("C. size = %d \n", len(buf))
 
 	inWidth := int(image.Xsize)
 	inHeight := int(image.Ysize)
@@ -135,8 +131,6 @@ func loadImage(buf []byte) (*C.VipsImage, ImageType, error) {
 	if len(buf) == 0 {
 		return nil, JPEG, errors.New("Image buffer is empty")
 	}
-    fmt.Printf("E3 ---> size = %d \n", len(buf))
-
 	image, imageType, err := vipsRead(buf)
 	if err != nil {
 		return nil, JPEG, err
