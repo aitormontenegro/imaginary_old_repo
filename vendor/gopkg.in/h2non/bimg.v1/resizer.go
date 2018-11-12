@@ -146,6 +146,8 @@ func loadImage(buf []byte) (*C.VipsImage, ImageType, error) {
 		return nil, JPEG, err
 	}
 
+    var o Options;
+
     test1, test2 := saveImage(image, o)
     fmt.Printf("E1. size = %d \n", len(test1))
     fmt.Printf("E2. size = %+v \n", test2)
