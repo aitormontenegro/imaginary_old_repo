@@ -8,7 +8,6 @@ import (
     "strings"
     "os"
     "gopkg.in/h2non/bimg.v1"
-    "runtime"
 )
 
 // OperationsMap defines the allowed image transformation operations listed by name.
@@ -42,7 +41,7 @@ type Operation func([]byte, ImageOptions) (Image, error)
 
 // Run performs the image transformation
 func (o Operation) Run(buf []byte, opts ImageOptions) (Image, error) {
-    runtime.FC()
+    fmt.Printf("7. size = %+v \n", test2)
     return o(buf, opts)
 }
 
