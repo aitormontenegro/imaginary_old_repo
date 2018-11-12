@@ -24,10 +24,6 @@ func resizer(buf []byte, o Options) ([]byte, error) {
 		return nil, err
 	}
 
-    test1, test2 := saveImage(image, o)
-    fmt.Printf("E1. size = %d \n", len(test1))
-    fmt.Printf("E2. size = %+v \n", test2)
-
 	// Clone and define default options
 	o = applyDefaults(o, imageType)
 

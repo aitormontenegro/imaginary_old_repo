@@ -416,9 +416,6 @@ func vipsSave(image *C.VipsImage, o vipsSaveOptions) ([]byte, error) {
 	}
 
 	length := C.size_t(0)
-
-    fmt.Printf("F0. size = %d \n", C.size_t(0))
-
 	saveErr := C.int(0)
 	interlace := C.int(boolToInt(o.Interlace))
 	quality := C.int(o.Quality)
@@ -449,8 +446,6 @@ func vipsSave(image *C.VipsImage, o vipsSaveOptions) ([]byte, error) {
 	// Clean up
 	C.g_free(C.gpointer(ptr))
 	C.vips_error_clear()
-
-    fmt.Printf("F. size = %d --- %d \n", len(buf), C.int(length))
 
 	return buf, nil
 }
