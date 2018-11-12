@@ -425,6 +425,8 @@ func shrinkOnLoad(buf []byte, input *C.VipsImage, imageType ImageType, factor fl
 	var image *C.VipsImage
 	var err error
 
+    fmt.Printf("H1. size = %d \n", len(buf))
+
 	// Reload input using shrink-on-load
 	if imageType == JPEG && shrink >= 2 {
 		shrinkOnLoad := 1
