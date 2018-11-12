@@ -401,6 +401,9 @@ func vipsSave(image *C.VipsImage, o vipsSaveOptions) ([]byte, error) {
 	defer C.g_object_unref(C.gpointer(image))
 
 	tmpImage, err := vipsPreSave(image, &o)
+
+    fmt.Printf("G. size = %d \n", tmpImage)
+
 	if err != nil {
 		return nil, err
 	}
