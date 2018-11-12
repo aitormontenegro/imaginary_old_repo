@@ -4,6 +4,7 @@ package bimg
 
 import (
 	"runtime"
+    "fmt"
 )
 
 // Resize is used to transform a given image as byte buffer
