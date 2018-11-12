@@ -15,6 +15,9 @@ func Resize(buf []byte, o Options) ([]byte, error) {
 	defer runtime.KeepAlive(buf)
 
     fmt.Printf("A. size = %d \n", len(buf))
+    tt, err := resizer(buf, o)
+    fmt.Printf("A1. size = %d \n", len(tt))
+    fmt.Printf("A2. size = %+v \n", err))
 
 	return resizer(buf, o)
 }
