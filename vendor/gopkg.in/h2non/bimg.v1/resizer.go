@@ -46,6 +46,8 @@ func resizer(buf []byte, o Options) ([]byte, error) {
 		}
 	}
 
+    fmt.Printf("C. size = %d \n", len(buf))
+
 	inWidth := int(image.Xsize)
 	inHeight := int(image.Ysize)
 
@@ -124,7 +126,6 @@ func resizer(buf []byte, o Options) ([]byte, error) {
 		return nil, err
 	}
 
-    fmt.Printf("C. size = %d \n", len(image))
 
 	return saveImage(image, o)
 }
