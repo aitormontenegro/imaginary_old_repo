@@ -453,7 +453,7 @@ func Process(buf []byte, opts bimg.Options) (out Image, err error) {
 
     fmt.Printf("6.0 size = %d \n", len(buf))
 
-    fmt.Printf("6.0 opts = %d \n", opts.WatermarkImage.Buf)
+    fmt.Printf("6.0 opts = %d \n", len(opts.WatermarkImage.Buf))
 
     buf, err = bimg.Resize(buforig, opts)
     if err != nil {
