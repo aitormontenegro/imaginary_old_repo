@@ -322,7 +322,7 @@ func watermarkImage(buf []byte, o ImageOptions) (Image, error) {
             fmt.Fprintf(os.Stderr, "%s\n", err)
             return Image{}, NewError("Invalid watermark image.", BadRequest)
         }
-    fmt.Printf("4.1 size = %d %s \n", len(ioutil.ReadAll(aitorfile)), o.Image)
+    fmt.Printf("4.1 size = %s \n", o.Image)
 
     imageBuf, _ := ioutil.ReadAll(aitorfile)
     if len(imageBuf) == 0 {
