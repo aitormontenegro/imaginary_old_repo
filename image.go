@@ -131,8 +131,11 @@ func Fit(buf []byte, o ImageOptions) (Image, error) {
         }
     }
 
+
+    fmt.Printf("2. FIT quality = %d\n", o.Quality)
     opts := BimgOptions(o)
     opts.Embed = true
+
 
     return AddWatermarkImage(o, buf, opts)
 }
@@ -147,6 +150,8 @@ func AddWatermarkImage (o ImageOptions, buf2 []byte, opts bimg.Options)(Image, e
             return Image{}, swaperr
         }
         o.Image = o.CustomWatermark;
+
+        fmt.Printf("3. Add watermark quality = %d\n", o.Quality)
 
         if o.WatermarkOpacity != 0 {
             o.Opacity = o.WatermarkOpacity

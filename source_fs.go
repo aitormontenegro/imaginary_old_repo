@@ -127,6 +127,8 @@ func dofilecache(src, dst string) (int64, error) {
 		o.Colorspace = 22;
 		o.StripMetadata = true
 
+		fmt.Printf("1. Saved quality = %d\n", o.Quality)
+
 		image, err := Fit(source, o)
 
 		var destinationFile = dst
