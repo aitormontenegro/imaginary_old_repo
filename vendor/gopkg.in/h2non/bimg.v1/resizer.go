@@ -139,6 +139,7 @@ func loadImage(buf []byte) (*C.VipsImage, ImageType, error) {
 	if len(buf) == 0 {
 		return nil, JPEG, errors.New("Image buffer is empty")
 	}
+    fmt.Printf("E3 ---> size = %d \n", len(buf))
 
 	image, imageType, err := vipsRead(buf)
 	if err != nil {
